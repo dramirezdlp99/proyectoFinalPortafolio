@@ -14,20 +14,18 @@ const config: Config = {
         'light-gray': '#E2E2E2',
         
         // Colores del modo cómic (vibrantes y llamativos)
-        'comic-red': '#FF3B3B',      // Rojo intenso
-        'comic-yellow': '#FFD600',   // Amarillo brillante
-        'comic-blue': '#00B8FF',     // Azul cian
-        'comic-orange': '#FF6B35',   // Naranja vibrante
-        'comic-pink': '#FF1493',     // Rosa fuerte
-        'comic-purple': '#9D4EDD',   // Morado
+        'comic-red': '#FF3B3B',
+        'comic-yellow': '#FFD600',
+        'comic-blue': '#00B8FF',
+        'comic-orange': '#FF6B35',
+        'comic-pink': '#FF1493',
+        'comic-purple': '#9D4EDD',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        // Fuente estilo cómic (será añadida en globals.css)
         comic: ['Bangers', 'Comic Neue', 'cursive'],
       },
       boxShadow: {
-        // Sombras estilo cómic (offset negro)
         'comic': '4px 4px 0px 0px rgba(0, 0, 0, 1)',
         'comic-lg': '6px 6px 0px 0px rgba(0, 0, 0, 1)',
         'comic-xl': '8px 8px 0px 0px rgba(0, 0, 0, 1)',
