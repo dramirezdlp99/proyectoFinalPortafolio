@@ -1,26 +1,231 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* ===========================
+   FUENTES GOOGLE FONTS
+   =========================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+
+/* ===========================
+   VARIABLES GLOBALES
+   =========================== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-main: #FFFFFF;
+  --bg-section: #E2E2E2;
+  --text-primary: #060E28;
+  --text-secondary: #374151;
+  --accent: #060E28;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ===========================
+   CONFIGURACIÓN BASE
+   =========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Para compensar el menú fijo */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease;
+}
+
+/* ===========================
+   MODO CÓMIC - ACTIVACIÓN GLOBAL
+   =========================== */
+body.comic-mode {
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      #FFD600 0px,
+      #FFD600 2px,
+      transparent 2px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      #FF6B35 0px,
+      #FF6B35 2px,
+      transparent 2px,
+      transparent 4px
+    ),
+    #FFFFFF;
+  background-size: 50px 50px;
+  font-family: 'Bangers', 'Comic Neue', cursive !important;
+}
+
+/* Ajuste de letras en modo cómic */
+body.comic-mode * {
+  font-family: 'Bangers', 'Comic Neue', cursive !important;
+  letter-spacing: 0.5px;
+}
+
+/* ===========================
+   UTILIDADES PERSONALIZADAS
+   =========================== */
+
+/* Botón estilo cómic principal (rojo) */
+@layer components {
+  .comic-button {
+    @apply bg-comic-red text-white border-4 border-black font-bold uppercase px-6 py-3 rounded-lg shadow-comic transition-all duration-200;
+  }
+  
+  .comic-button:hover {
+    @apply translate-x-1 translate-y-1 shadow-none;
+  }
+  
+  /* Botón estilo cómic alternativo (amarillo) */
+  .comic-button-alt {
+    @apply bg-comic-yellow text-black border-4 border-black font-bold uppercase px-6 py-3 rounded-lg shadow-comic transition-all duration-200;
+  }
+  
+  .comic-button-alt:hover {
+    @apply translate-x-1 translate-y-1 shadow-none;
+  }
+
+  /* Título estilo cómic */
+  .section-title {
+    @apply text-5xl font-black uppercase tracking-wide;
+    text-shadow: 
+      3px 3px 0px #000,
+      -1px -1px 0px #000,
+      1px -1px 0px #000,
+      -1px 1px 0px #000;
+  }
+
+  /* Sombra de texto para modo cómic */
+  .text-shadow-comic {
+    text-shadow: 
+      2px 2px 0px #000,
+      -1px -1px 0px #000;
+  }
+
+  /* Patrón de medios tonos (estilo cómic) */
+  .comic-halftone {
+    background-image: 
+      radial-gradient(circle, black 1px, transparent 1px);
+    background-size: 8px 8px;
+  }
+}
+
+/* ===========================
+   ANIMACIONES ESPECIALES
+   =========================== */
+@keyframes comic-pop {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.05) rotate(2deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.comic-pop {
+  animation: comic-pop 0.3s ease-in-out;
+}
+
+/* Efecto de zoom suave */
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.zoom-in {
+  animation: zoom-in 0.5s ease-out;
+}
+
+/* ===========================
+   SCROLLBAR PERSONALIZADA
+   =========================== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #E2E2E2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #060E28;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0A1540;
+}
+
+/* Scrollbar en modo cómic */
+body.comic-mode ::-webkit-scrollbar-thumb {
+  background: #FF3B3B;
+  border: 2px solid #000;
+}
+
+/* ===========================
+   MODO OSCURO (Opcional)
+   =========================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-main: #0F172A;
+    --bg-section: #1E293B;
+    --text-primary: #F1F5F9;
+    --text-secondary: #CBD5E1;
+  }
+  
+  /* Mantener modo claro si se prefiere */
+  /* Puedes comentar esto si quieres dark mode automático */
+  body:not(.comic-mode) {
+    background-color: #FFFFFF;
+    color: #060E28;
+  }
+}
+
+/* ===========================
+   UTILIDADES RESPONSIVE
+   =========================== */
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* ===========================
+   EFECTOS HOVER GLOBALES
+   =========================== */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ===========================
+   BADGES Y ETIQUETAS
+   =========================== */
+.badge-tech {
+  @apply inline-block bg-dark-blue text-white text-xs font-semibold px-3 py-1 rounded-full;
+}
+
+body.comic-mode .badge-tech {
+  @apply bg-comic-yellow text-black border-2 border-black;
 }
