@@ -1,13 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* ===========================
-   FUENTES GOOGLE FONTS
+   FUENTES GOOGLE FONTS (DEBEN IR PRIMERO)
    =========================== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+
+/* ===========================
+   TAILWIND BASE, COMPONENTS, UTILITIES
+   =========================== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* ===========================
    VARIABLES GLOBALES
@@ -31,7 +34,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px; /* Para compensar el menú fijo */
+  scroll-padding-top: 100px;
 }
 
 body {
@@ -66,7 +69,6 @@ body.comic-mode {
   font-family: 'Bangers', 'Comic Neue', cursive !important;
 }
 
-/* Ajuste de letras en modo cómic */
 body.comic-mode * {
   font-family: 'Bangers', 'Comic Neue', cursive !important;
   letter-spacing: 0.5px;
@@ -75,8 +77,6 @@ body.comic-mode * {
 /* ===========================
    UTILIDADES PERSONALIZADAS
    =========================== */
-
-/* Botón estilo cómic principal (rojo) */
 @layer components {
   .comic-button {
     @apply bg-comic-red text-white border-4 border-black font-bold uppercase px-6 py-3 rounded-lg shadow-comic transition-all duration-200;
@@ -86,7 +86,6 @@ body.comic-mode * {
     @apply translate-x-1 translate-y-1 shadow-none;
   }
   
-  /* Botón estilo cómic alternativo (amarillo) */
   .comic-button-alt {
     @apply bg-comic-yellow text-black border-4 border-black font-bold uppercase px-6 py-3 rounded-lg shadow-comic transition-all duration-200;
   }
@@ -95,7 +94,6 @@ body.comic-mode * {
     @apply translate-x-1 translate-y-1 shadow-none;
   }
 
-  /* Título estilo cómic */
   .section-title {
     @apply text-5xl font-black uppercase tracking-wide;
     text-shadow: 
@@ -105,14 +103,12 @@ body.comic-mode * {
       -1px 1px 0px #000;
   }
 
-  /* Sombra de texto para modo cómic */
   .text-shadow-comic {
     text-shadow: 
       2px 2px 0px #000,
       -1px -1px 0px #000;
   }
 
-  /* Patrón de medios tonos (estilo cómic) */
   .comic-halftone {
     background-image: 
       radial-gradient(circle, black 1px, transparent 1px);
@@ -139,7 +135,6 @@ body.comic-mode * {
   animation: comic-pop 0.3s ease-in-out;
 }
 
-/* Efecto de zoom suave */
 @keyframes zoom-in {
   from {
     opacity: 0;
@@ -175,7 +170,6 @@ body.comic-mode * {
   background: #0A1540;
 }
 
-/* Scrollbar en modo cómic */
 body.comic-mode ::-webkit-scrollbar-thumb {
   background: #FF3B3B;
   border: 2px solid #000;
@@ -192,8 +186,6 @@ body.comic-mode ::-webkit-scrollbar-thumb {
     --text-secondary: #CBD5E1;
   }
   
-  /* Mantener modo claro si se prefiere */
-  /* Puedes comentar esto si quieres dark mode automático */
   body:not(.comic-mode) {
     background-color: #FFFFFF;
     color: #060E28;
