@@ -1,0 +1,143 @@
+{
+  "lang": "es",
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "services": "Servicios",
+    "testimonials": "Testimonios",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "Construyendo el futuro con diseño y software",
+    "subtitle": "Creando soluciones digitales eficientes.",
+    "description": "Transformo ideas en experiencias digitales útiles y atractivas. A través del diseño y la programación, busco crear soluciones que simplifiquen la vida de las personas.",
+    "cta_contact": "Contacto",
+    "cta_spotify": "Spotify",
+    "cv_view": "Ver CV",
+    "cv_download": "Descargar CV"
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "items": [
+      {
+        "title": "Mi Pasión: Software y Diseño",
+        "content": "Desde siempre he estado fascinado por cómo la tecnología y el diseño se unen para crear soluciones. Mi objetivo es transformar ideas complejas en productos digitales simples y funcionales. Mi enfoque principal es el desarrollo web moderno, usando Next.js y Tailwind CSS para interfaces rápidas y estéticamente agradables."
+      },
+      {
+        "title": "Lo que Soy: Ingeniero en Formación",
+        "content": "Actualmente, estoy en proceso de convertirme en Ingeniero de Software, lo que me ha proporcionado una base sólida en estructuras de datos, algoritmia y desarrollo de back-end. Combino esta lógica rigurosa con mi ojo para el diseño (UI/UX) para ofrecer soluciones completas y de alta calidad."
+      },
+      {
+        "title": "Mis Aspiraciones Profesionales",
+        "content": "Busco trabajar en proyectos que supongan un desafío, donde pueda aplicar mis conocimientos en IA, desarrollo full-stack y diseño. Me motiva especialmente la innovación y la creación de productos que tengan un impacto positivo en los usuarios y en el entorno digital."
+      }
+    ]
+  },
+  "projects": {
+    "title": "Mis Proyectos",
+    "items": [
+      {
+        "title": "DigiHealth – Sistema de Gestión Clínica",
+        "description": "Plataforma completa para la gestión hospitalaria, abarcando desde el registro biométrico de pacientes hasta el manejo de inventario médico y citas. Diseño enfocado en UI/UX profesional.",
+        "tech": ["React", "Node.js", "MongoDB", "Tailwind CSS", "Figma"],
+        "link": "#"
+      },
+      {
+        "title": "Landing Page de Turismo Interactivo",
+        "description": "Diseño responsive y animado de una landing page para una agencia de viajes, utilizando animaciones fluidas y un diseño moderno. Excelente rendimiento gracias a Next.js.",
+        "tech": ["Next.js", "Tailwind CSS", "Framer Motion"],
+        "link": "#"
+      },
+      {
+        "title": "Shooter 3D - Juego en Unity",
+        "description": "Desarrollo de un prototipo de videojuego First-Person Shooter (FPS) en 3D. Aplicación de lógica de juego, física y scripting avanzado.",
+        "tech": ["Unity", "C#", "Blender"],
+        "link": "#"
+      }
+    ],
+    "cta": "Ver Proyecto"
+  },
+  "skills": {
+    "title": "Árbol de Habilidades"
+  },
+  "services": {
+    "title": "Servicios",
+    "items": [
+      {
+        "title": "Desarrollo Web Personalizado",
+        "description": "Construyo sitios web modernos, rápidos y totalmente responsivos usando las últimas tecnologías como Next.js, React y Tailwind CSS.",
+        "icon": "code"
+      },
+      {
+        "title": "Diseño UX/UI Profesional",
+        "description": "Creo interfaces atractivas y fáciles de usar, prototipadas en Figma. Enfocado en la experiencia del usuario y conversión.",
+        "icon": "palette"
+      },
+      {
+        "title": "Desarrollo de Aplicaciones Interactivas",
+        "description": "Desde aplicaciones web complejas hasta videojuegos básicos en Unity. Experiencia en lógica de negocio y gamificación.",
+        "icon": "gamepad"
+      }
+    ],
+    "cta": "Más detalles"
+  },
+  "testimonials": {
+    "title": "Testimonios",
+    "items": [
+      {
+        "name": "Jacqueline Wright",
+        "role": "Cliente",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "image": "/testimonial-1.jpg"
+      },
+      {
+        "name": "Carlos Pérez",
+        "role": "Colaborador",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "image": "/testimonial-2.jpg"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Tienes una idea, proyecto o colaboración en mente? ¡Hablemos y creemos algo increíble!",
+    "form": {
+      "name": "Nombre",
+      "lastname": "Apellido",
+      "email": "Correo electrónico",
+      "message": "Mensaje",
+      "send": "Enviar",
+      "call": "Llámame",
+      "sending": "Enviando...",
+      "success": "¡Mensaje enviado! Te responderé pronto.",
+      "error": "Error al enviar. Intenta nuevamente."
+    },
+    "social": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "email": "Correo"
+    }
+  },
+  "footer": {
+    "cta_title": "¿Necesitas más información?",
+    "cta_subtitle": "Escríbeme y hablemos de tu proyecto.",
+    "cta_button": "Contáctame",
+    "copyright": "© 2025 David Ramírez de la Parra. Todos los derechos reservados.",
+    "nav_title": "Dirígete a:",
+    "motto_title": "Mi Enfoque:",
+    "motto_text": "Construyendo experiencias digitales con creatividad y tecnología.",
+    "contact_title": "Contáctate conmigo"
+  },
+  "chatbot": {
+    "title": "David AI",
+    "placeholder": "Escribe tu mensaje...",
+    "placeholder_comic": "¡Escribe aquí, HÉROE!",
+    "send": "Enviar",
+    "typing": "... Escribiendo"
+  },
+  "comicMode": {
+    "tooltip": "Modo Cómic"
+  }
+}
