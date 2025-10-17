@@ -1,112 +1,139 @@
-// src/components/About.tsx
-
 'use client';
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useComicMode } from '@/context/ComicModeContext';
+import { useLanguage } from '@/context/LanguageContext';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-
-// Datos de la sección Sobre Mí
-const aboutData = [
-  {
-    image: '/about-interest-1.png', // Reemplaza con tus imágenes
-    title: 'Mi Pasión: Software y Diseño',
-    content: 'Desde siempre he estado fascinado por cómo la tecnología y el diseño se unen para crear soluciones. Mi objetivo es transformar ideas complejas en productos digitales simples y funcionales. Mi enfoque principal es el desarrollo web moderno, usando Next.js y Tailwind CSS para interfaces rápidas y estéticamente agradables.',
-  },
-  {
-    image: '/about-interest-2.png',
-    title: 'Lo que Soy: Ingeniero en Formación',
-    content: 'Actualmente, estoy en proceso de convertirme en Ingeniero de Software, lo que me ha proporcionado una base sólida en estructuras de datos, algoritmia y desarrollo de back-end. Combino esta lógica rigurosa con mi ojo para el diseño (UI/UX) para ofrecer soluciones completas y de alta calidad.',
-  },
-  {
-    image: '/about-interest-3.png',
-    title: 'Mis Aspiraciones Profesionales',
-    content: 'Busco trabajar en proyectos que supongan un desafío, donde pueda aplicar mis conocimientos en IA, desarrollo full-stack y diseño. Me motiva especialmente la innovación y la creación de productos que tengan un impacto positivo en los usuarios y en el entorno digital.',
-  },
-];
+import { motion } from 'framer-motion';
 
 export default function About() {
   const { isComicMode } = useComicMode();
+  const { content } = useLanguage();
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  // Funciones para la navegación del carrusel
   const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
   
-  // Actualizar el índice del carrusel (para el indicador visual)
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
     setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi, setSelectedIndex]);
+  }, [emblaApi]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!emblaApi) return;
     emblaApi.on('select', onSelect);
     onSelect();
+    return () => { emblaApi.off('select', onSelect); };
   }, [emblaApi, onSelect]);
 
   // Estilos condicionales
-  const sectionBg = isComicMode ? 'bg-white' : 'bg-white'; // Mantenemos blanco para contraste
-  const titleClasses = isComicMode ? 'section-title font-comic' : 'text-dark-blue';
-  const textClasses = isComicMode ? 'text-black' : 'text-gray-700';
-  const cardBorder = isComicMode ? 'border-4 border-black shadow-comic' : 'shadow-xl border border-light-gray';
-  const navButtonClasses = isComicMode ? 'comic-button' : 'bg-dark-blue text-white hover:bg-dark-blue/90';
+  const sectionBg = isComicMode ? 'bg-white' : 'bg-light-gray';
+  const titleClasses = isComicMode ? 'section-title font-comic text-comic-red' : 'text-dark-blue';
+  const textClasses = isComicMode ? 'text-black font-bold' : 'text-gray-700';
+  const cardBorder = isComicMode ? 'border-4 border-black shadow-comic-lg bg-comic-yellow' : 'shadow-xl border border-light-gray bg-white';
+  const navButtonClasses = isComicMode 
+    ? 'bg-comic-red border-4 border-black text-white hover:bg-black hover:text-comic-red shadow-comic' 
+    : 'bg-dark-blue text-white hover:bg-dark-blue/90';
+
+  // Imágenes de ejemplo (crea estas en /public/)
+  const images = [
+    '/about-interest-1.png',
+    '/about-interest-2.png', 
+    '/about-interest-3.png'
+  ];
 
   return (
-    <section id="about" className={`py-20 px-6 md:px-16 lg:pl-64 ${sectionBg}`}>
-      <div className="container mx-auto">
-        {/* Título de la Sección - Centrado y con Estilo Figma */}
-        <h2 className={`text-4xl font-bold text-center mb-12 ${titleClasses}`}>
-          Sobre Mí
-        </h2>
+    <section id="about" className={`py-20 px-6 md:px-16 lg:pl-80 ${sectionBg} relative overflow-hidden`}>
+      
+      {/* Efecto de fondo cómic */}
+      {isComicMode && (
+        <div className="absolute inset-0 opacity-5 pointer-events-none">
+          <div className="comic-halftone w-full h-full"></div>
+        </div>
+      )}
 
-        <div className={`flex flex-col md:flex-row items-center bg-light-gray p-8 rounded-xl ${cardBorder} transition-all duration-300`}>
+      <div className="container mx-auto relative z-10">
+        {/* Título */}
+        <motion.h2 
+          className={`text-4xl font-bold text-center mb-12 ${titleClasses}`}
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          {content.about.title}
+          {isComicMode && (
+            <motion.span 
+              className="inline-block ml-4 text-comic-yellow"
+              animate={{ rotate: [0, 10, -10, 0] }}
+              transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2 }}
+            >
+              ★
+            </motion.span>
+          )}
+        </motion.h2>
+
+        <motion.div 
+          className={`flex flex-col lg:flex-row items-center p-8 rounded-xl ${cardBorder} transition-all duration-300`}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           
-          {/* Carrusel de Imágenes (Izquierda) */}
-          <div className="w-full md:w-1/2 relative pr-0 md:pr-8 mb-8 md:mb-0">
+          {/* CARRUSEL DE IMÁGENES (Izquierda) */}
+          <div className="w-full lg:w-1/2 relative pr-0 lg:pr-8 mb-8 lg:mb-0">
             
             <div className="overflow-hidden rounded-xl" ref={emblaRef}>
               <div className="flex">
-                {aboutData.map((item, index) => (
+                {images.map((img, index) => (
                   <div key={index} className="flex-[0_0_100%] min-w-0">
                     <Image 
-                      src={item.image} 
-                      alt={item.title} 
+                      src={img} 
+                      alt={`About ${index + 1}`} 
                       width={600} 
                       height={400} 
-                      className={`rounded-xl w-full h-auto object-cover ${isComicMode ? 'border-4 border-black shadow-comic' : 'shadow-lg'}`}
+                      className={`rounded-xl w-full h-auto object-cover transition-all duration-300 ${
+                        isComicMode 
+                          ? 'border-4 border-black shadow-comic' 
+                          : 'shadow-lg'
+                      }`}
                     />
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Botones de Navegación del Carrusel */}
+            {/* Botones de navegación */}
             <button 
               onClick={scrollPrev}
-              className={`absolute top-1/2 left-4 transform -translate-y-1/2 p-2 rounded-full z-10 ${navButtonClasses}`}
+              className={`absolute top-1/2 left-4 transform -translate-y-1/2 p-2 rounded-full z-10 transition-all ${navButtonClasses}`}
+              aria-label="Previous"
             >
               <ChevronLeft size={24} />
             </button>
             <button 
               onClick={scrollNext}
-              className={`absolute top-1/2 right-4 transform -translate-y-1/2 p-2 rounded-full z-10 ${navButtonClasses}`}
+              className={`absolute top-1/2 right-4 transform -translate-y-1/2 p-2 rounded-full z-10 transition-all ${navButtonClasses}`}
+              aria-label="Next"
             >
               <ChevronRight size={24} />
             </button>
 
           </div>
 
-          {/* Contenido (Derecha) */}
-          <div className="w-full md:w-1/2 pl-0 md:pl-8">
-            {aboutData.map((item, index) => (
-              <div 
+          {/* CONTENIDO (Derecha) */}
+          <div className="w-full lg:w-1/2 pl-0 lg:pl-8">
+            {content.about.items.map((item, index) => (
+              <motion.div 
                 key={index} 
-                // Solo muestra el contenido que coincide con el índice seleccionado
-                className={`${index === selectedIndex ? 'block' : 'hidden'} transition-opacity duration-500`}
+                className={`${index === selectedIndex ? 'block' : 'hidden'}`}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: index === selectedIndex ? 1 : 0, x: index === selectedIndex ? 0 : 20 }}
+                transition={{ duration: 0.5 }}
               >
                 <h3 className={`text-3xl font-bold mb-4 ${titleClasses}`}>
                   {item.title}
@@ -114,30 +141,28 @@ export default function About() {
                 <p className={`text-lg leading-relaxed ${textClasses}`}>
                   {item.content}
                 </p>
-              </div>
+              </motion.div>
             ))}
             
-            {/* Dots/Indicadores de posición del Carrusel */}
-            <div className="flex justify-center md:justify-start mt-6 space-x-2">
-              {aboutData.map((_, index) => (
+            {/* Dots indicadores */}
+            <div className="flex justify-center lg:justify-start mt-6 space-x-2">
+              {images.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => emblaApi && emblaApi.scrollTo(index)}
-                  className={`w-3 h-3 rounded-full transition-colors duration-300 
-                              ${index === selectedIndex 
-                                ? 'bg-dark-blue scale-125' 
-                                : 'bg-gray-400 hover:bg-dark-blue/50'
-                              }
-                              ${isComicMode && index === selectedIndex 
-                                ? 'bg-comic-red border-2 border-black' 
-                                : ''
-                              }
-                            `}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === selectedIndex 
+                      ? isComicMode 
+                        ? 'bg-comic-red border-2 border-black scale-125' 
+                        : 'bg-dark-blue scale-125'
+                      : 'bg-gray-400 hover:bg-dark-blue/50'
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

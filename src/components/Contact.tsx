@@ -1,50 +1,256 @@
 'use client';
+
 import React, { useState } from 'react';
 import axios from 'axios';
+import Image from 'next/image';
+import { useComicMode } from '@/context/ComicModeContext';
+import { useLanguage } from '@/context/LanguageContext';
+import { Send, Phone, Github, Linkedin, Mail } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function Contact() {
+  const { isComicMode } = useComicMode();
+  const { content } = useLanguage();
   const [form, setForm] = useState({ name: '', lastname: '', email: '', message: '' });
   const [status, setStatus] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    setStatus('Enviando...');
+    setStatus(content.contact.form.sending);
+    setIsLoading(true);
+    
     try {
       await axios.post('/api/contact', form);
-      setStatus('Enviado. ¡Gracias!');
+      setStatus(content.contact.form.success);
       setForm({ name: '', lastname: '', email: '', message: '' });
     } catch (err) {
-      setStatus('Error al enviar');
+      setStatus(content.contact.form.error);
+    } finally {
+      setIsLoading(false);
+      setTimeout(() => setStatus(''), 5000);
     }
   }
 
+  // Estilos condicionales
+  const sectionBg = isComicMode ? 'bg-white' : 'bg-light-gray';
+  const titleClasses = isComicMode ? 'section-title font-comic text-comic-red' : 'text-dark-blue';
+  const inputClasses = isComicMode
+    ? 'border-4 border-black bg-white text-black font-bold focus:ring-4 focus:ring-comic-yellow'
+    : 'border-2 border-gray-300 bg-white text-gray-900 focus:ring-2 focus:ring-dark-blue';
+  const buttonClasses = isComicMode
+    ? 'comic-button w-full'
+    : 'bg-dark-blue text-white hover:bg-dark-blue/90 w-full';
+  const secondaryButtonClasses = isComicMode
+    ? 'comic-button-alt w-full'
+    : 'bg-white border-2 border-dark-blue text-dark-blue hover:bg-dark-blue hover:text-white w-full';
+  const socialButtonClasses = isComicMode
+    ? 'bg-comic-yellow border-4 border-black text-black hover:bg-black hover:text-comic-yellow shadow-comic'
+    : 'bg-dark-blue text-white hover:bg-dark-blue/90';
+
   return (
-    <section id="contact" className="py-12 bg-primary text-white">
-      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
-        <div>
-          <img src="/contact-illustration.png" alt="contact" className="w-full max-w-sm" />
+    <section id="contact" className={`py-20 px-6 md:px-16 lg:pl-80 ${sectionBg} relative overflow-hidden`}>
+      
+      {/* Efecto de fondo cómic */}
+      {isComicMode && (
+        <div className="absolute inset-0 opacity-5 pointer-events-none">
+          <div className="comic-halftone w-full h-full"></div>
         </div>
+      )}
 
-        <div>
-          <h2 className="text-2xl font-semibold">Contacto</h2>
-          <form onSubmit={submit} className="mt-4 space-y-3 text-black">
-            <input value={form.name} onChange={e=>setForm({...form, name: e.target.value})} name="name" required placeholder="Nombre" className="w-full border px-3 py-2 rounded" />
-            <input value={form.lastname} onChange={e=>setForm({...form, lastname: e.target.value})} name="lastname" placeholder="Apellido" className="w-full border px-3 py-2 rounded" />
-            <input value={form.email} onChange={e=>setForm({...form, email: e.target.value})} name="email" required placeholder="Correo" className="w-full border px-3 py-2 rounded" />
-            <textarea value={form.message} onChange={e=>setForm({...form, message: e.target.value})} name="message" placeholder="Mensaje" className="w-full border px-3 py-2 rounded" />
-            <div className="flex gap-4">
-              <button type="submit" className="px-4 py-2 bg-white text-primary rounded">Enviar</button>
-              <a href="tel:+573001234567" className="px-4 py-2 border rounded bg-white text-primary">Llámame</a>
+      <div className="container mx-auto relative z-10">
+        {/* Título */}
+        <motion.h2 
+          className={`text-4xl font-bold text-center mb-4 ${titleClasses}`}
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          {content.contact.title}
+        </motion.h2>
+
+        <p className={`text-center mb-12 text-lg ${
+          isComicMode ? 'text-black font-semibold' : 'text-gray-600'
+        }`}>
+          {content.contact.subtitle}
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          
+          {/* LADO IZQUIERDO: Ilustración */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex justify-center"
+          >
+            <div className={`relative ${isComicMode ? 'animate-float' : ''}`}>
+              <Image
+                src="/contact-illustration.png"
+                alt="Contact Illustration"
+                width={500}
+                height={400}
+                className={`w-full max-w-md h-auto ${
+                  isComicMode ? 'border-4 border-black shadow-comic-lg rounded-xl' : ''
+                }`}
+              />
+              
+              {/* Bocadillo en modo cómic */}
+              {isComicMode && (
+                <motion.div
+                  className="absolute -top-8 -right-8 bg-comic-yellow text-black font-black text-xl px-4 py-2 rounded-lg border-4 border-black shadow-comic rotate-6"
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3, type: "spring" }}
+                >
+                  ¡Hablemos!
+                </motion.div>
+              )}
             </div>
-          </form>
+          </motion.div>
 
-          <div className="mt-4">
-            <a href="https://github.com/tuUsuario" target="_blank" rel="noreferrer" className="mr-4">GitHub</a>
-            <a href="https://www.linkedin.com/in/tuUsuario" target="_blank" rel="noreferrer" className="mr-4">LinkedIn</a>
-            <a href="mailto:tuemail@example.com">Correo</a>
-          </div>
+          {/* LADO DERECHO: Formulario */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <form onSubmit={submit} className="space-y-4">
+              
+              {/* Nombre */}
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={e => setForm({...form, name: e.target.value})}
+                  required
+                  placeholder={content.contact.form.name}
+                  className={`w-full px-4 py-3 rounded-lg transition-all focus:outline-none ${inputClasses}`}
+                />
+              </div>
 
-          <p className="mt-2 text-sm text-white">{status}</p>
+              {/* Apellido */}
+              <div>
+                <input
+                  type="text"
+                  name="lastname"
+                  value={form.lastname}
+                  onChange={e => setForm({...form, lastname: e.target.value})}
+                  placeholder={content.contact.form.lastname}
+                  className={`w-full px-4 py-3 rounded-lg transition-all focus:outline-none ${inputClasses}`}
+                />
+              </div>
+
+              {/* Email */}
+              <div>
+                <input
+                  type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={e => setForm({...form, email: e.target.value})}
+                  required
+                  placeholder={content.contact.form.email}
+                  className={`w-full px-4 py-3 rounded-lg transition-all focus:outline-none ${inputClasses}`}
+                />
+              </div>
+
+              {/* Mensaje */}
+              <div>
+                <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={e => setForm({...form, message: e.target.value})}
+                  required
+                  placeholder={content.contact.form.message}
+                  rows={5}
+                  className={`w-full px-4 py-3 rounded-lg transition-all focus:outline-none resize-none ${inputClasses}`}
+                />
+              </div>
+
+              {/* Botones */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <motion.button
+                  type="submit"
+                  disabled={isLoading}
+                  className={`px-8 py-3 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 ${buttonClasses}`}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Send size={20} />
+                  {content.contact.form.send}
+                </motion.button>
+
+                <motion.a
+                  href="tel:+573001234567"
+                  className={`px-8 py-3 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 ${secondaryButtonClasses}`}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Phone size={20} />
+                  {content.contact.form.call}
+                </motion.a>
+              </div>
+
+              {/* Status message */}
+              {status && (
+                <motion.p
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`text-center font-semibold ${
+                    status.includes('Error') || status.includes('error')
+                      ? 'text-red-600'
+                      : 'text-green-600'
+                  }`}
+                >
+                  {status}
+                </motion.p>
+              )}
+            </form>
+
+            {/* Redes Sociales */}
+            <div className="mt-8">
+              <p className={`text-center mb-4 font-semibold ${
+                isComicMode ? 'text-black' : 'text-gray-700'
+              }`}>
+                {content.footer.contact_title}
+              </p>
+              <div className="flex justify-center gap-4">
+                <motion.a
+                  href="https://github.com/tu-usuario"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-12 h-12 flex items-center justify-center rounded-full transition-all ${socialButtonClasses}`}
+                  whileHover={{ scale: 1.1 }}
+                  aria-label="GitHub"
+                >
+                  <Github size={24} />
+                </motion.a>
+                <motion.a
+                  href="https://linkedin.com/in/tu-usuario"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-12 h-12 flex items-center justify-center rounded-full transition-all ${socialButtonClasses}`}
+                  whileHover={{ scale: 1.1 }}
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={24} />
+                </motion.a>
+                <motion.a
+                  href="mailto:tu.email@example.com"
+                  className={`w-12 h-12 flex items-center justify-center rounded-full transition-all ${socialButtonClasses}`}
+                  whileHover={{ scale: 1.1 }}
+                  aria-label="Email"
+                >
+                  <Mail size={24} />
+                </motion.a>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

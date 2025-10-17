@@ -32,7 +32,7 @@ export default function CircularMenu() {
   const menuSize = 'w-56 h-56';
 
   return (
-    <div className="fixed top-8 left-8 z-40">
+    <div className="fixed top-8 left-8 z-50" style={{ position: 'fixed' }}>
       <motion.div
         className={`relative ${menuSize} rounded-full flex items-center justify-center shadow-2xl overflow-hidden transition-all duration-300 ${
           isComicMode

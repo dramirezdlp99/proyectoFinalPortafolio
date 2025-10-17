@@ -1,26 +1,113 @@
 'use client';
-import React from 'react';
 
-const services = [
-  { title: 'Desarrollo Web Personalizado', desc: 'Construyo sitios web modernos, rápidos y totalmente responsivos.', more: '#' },
-  { title: 'Diseño UX/UI Profesional', desc: 'Interfaces atractivas y fáciles de usar, prototipadas en Figma.', more: '#' },
-  { title: 'Desarrollo de Aplicaciones Interactivas', desc: 'Desde apps web hasta videojuegos básicos en Unity.', more: '#' }
-];
+import React from 'react';
+import { useComicMode } from '@/context/ComicModeContext';
+import { useLanguage } from '@/context/LanguageContext';
+import { Code, Palette, Gamepad2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function Services() {
+  const { isComicMode } = useComicMode();
+  const { content } = useLanguage();
+
+  // Mapeo de iconos
+  const iconMap: { [key: string]: React.ReactNode } = {
+    code: <Code size={40} />,
+    palette: <Palette size={40} />,
+    gamepad: <Gamepad2 size={40} />
+  };
+
+  // Estilos condicionales
+  const sectionBg = isComicMode ? 'bg-white' : 'bg-light-gray';
+  const titleClasses = isComicMode ? 'section-title font-comic text-comic-red' : 'text-dark-blue';
+  const cardClasses = isComicMode
+    ? 'border-4 border-black shadow-comic-lg bg-comic-yellow hover:bg-comic-red hover:text-white'
+    : 'bg-white shadow-xl border border-gray-200 hover:shadow-2xl hover:scale-105';
+
   return (
-    <section id="services" className="py-12 bg-primary text-white">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-2xl font-semibold text-center">Servicios</h2>
-        <div className="mt-8 grid md:grid-cols-3 gap-6">
-          {services.map((s, i) => (
-            <div key={i} className="bg-white text-primary p-6 rounded">
-              <h3 className="font-semibold">{s.title}</h3>
-              <p className="text-sm mt-2">{s.desc}</p>
-              <div className="mt-4">
-                <a href="#contact" className="px-4 py-2 border rounded">Más detalles</a>
+    <section id="services" className={`py-20 px-6 md:px-16 lg:pl-80 ${sectionBg} relative overflow-hidden`}>
+      
+      {/* Efecto de fondo cómic */}
+      {isComicMode && (
+        <div className="absolute inset-0 opacity-5 pointer-events-none">
+          <div className="comic-halftone w-full h-full"></div>
+        </div>
+      )}
+
+      <div className="container mx-auto relative z-10">
+        {/* Título */}
+        <motion.h2 
+          className={`text-4xl font-bold text-center mb-12 ${titleClasses}`}
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          {content.services.title}
+        </motion.h2>
+
+        {/* Grid de Servicios */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {content.services.items.map((service, index) => (
+            <motion.div
+              key={index}
+              className={`p-8 rounded-xl transition-all duration-300 group ${cardClasses}`}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -10 }}
+            >
+              {/* Ícono */}
+              <div className={`mb-6 ${
+                isComicMode 
+                  ? 'text-black group-hover:text-white' 
+                  : 'text-dark-blue'
+              }`}>
+                {iconMap[service.icon]}
               </div>
-            </div>
+
+              {/* Título */}
+              <h3 className={`text-2xl font-bold mb-4 ${
+                isComicMode 
+                  ? 'font-comic text-black group-hover:text-white' 
+                  : 'text-dark-blue'
+              }`}>
+                {service.title}
+              </h3>
+
+              {/* Descripción */}
+              <p className={`text-base mb-6 ${
+                isComicMode 
+                  ? 'text-black group-hover:text-white font-semibold' 
+                  : 'text-gray-700'
+              }`}>
+                {service.description}
+              </p>
+
+              {/* Botón */}
+              <a 
+                href="#contact" 
+                className={`inline-block px-6 py-2 rounded-lg font-semibold transition-all ${
+                  isComicMode
+                    ? 'bg-black text-comic-yellow border-2 border-black group-hover:bg-comic-yellow group-hover:text-black'
+                    : 'border-2 border-dark-blue text-dark-blue hover:bg-dark-blue hover:text-white'
+                }`}
+              >
+                {content.services.cta}
+              </a>
+
+              {/* Efecto decorativo en modo cómic */}
+              {isComicMode && (
+                <motion.div
+                  className="absolute top-4 right-4 text-4xl font-black opacity-20"
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  ★
+                </motion.div>
+              )}
+            </motion.div>
           ))}
         </div>
       </div>
