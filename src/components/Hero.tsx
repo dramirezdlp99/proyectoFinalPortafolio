@@ -1,42 +1,159 @@
 'use client';
-import React, { useState } from 'react';
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { useComicMode } from "@/context/ComicModeContext";
+import { useLanguage } from "@/context/LanguageContext";
+import { Send, Music, Download, Eye } from "lucide-react";
 
 export default function Hero() {
-  const [isComic, setIsComic] = useState(false);
+  const { isComicMode } = useComicMode();
+  const { content } = useLanguage();
 
-  function toggleComic() {
-    setIsComic(v => !v);
-    if (!isComic) document.body.classList.add('comic');
-    else document.body.classList.remove('comic');
-  }
+  // Estilos condicionales
+  const heroClasses = isComicMode ? 'bg-white' : 'bg-light-gray';
+  
+  const titleClasses = isComicMode 
+    ? 'section-title font-comic text-5xl lg:text-7xl text-black leading-tight' 
+    : 'text-5xl lg:text-6xl font-extrabold text-dark-blue leading-tight';
+  
+  const primaryButtonClasses = isComicMode 
+    ? 'comic-button' 
+    : 'bg-dark-blue text-white shadow-lg hover:bg-dark-blue/90';
+
+  const secondaryButtonClasses = isComicMode
+    ? 'comic-button-alt'
+    : 'bg-white border-2 border-dark-blue text-dark-blue hover:bg-dark-blue hover:text-white';
+  
+  const textBodyColor = isComicMode ? 'text-black font-bold' : 'text-gray-600';
 
   return (
-    <section id="home" className="py-12 section-panel">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8">
-        <div className="flex-1">
-          <h1 className="text-3xl md:text-4xl font-semibold text-primary">Construyendo el futuro con diseño y software</h1>
-          <p className="mt-4 text-sm md:text-base text-neutral-700 max-w-xl">
-            Transformo ideas en experiencias digitales útiles y atractivas. A través del diseño y la programación, busco crear soluciones que simplifiquen la vida de las personas.
+    <section id="inicio" className={`relative pt-32 pb-20 flex items-center min-h-screen ${heroClasses}`}>
+      
+      {/* Efecto de fondo en modo cómic */}
+      {isComicMode && (
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
+          <div className="comic-halftone w-full h-full"></div>
+        </div>
+      )}
+
+      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-10 px-6 md:px-16 lg:pl-80">
+        
+        {/* LADO IZQUIERDO: Texto y Botones */}
+        <motion.div
+          initial={{ opacity: 0, x: -80 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-xl md:order-1 order-2"
+        >
+          {/* TÍTULO */}
+          <h1 className={titleClasses}>
+            {content.hero.title}
+          </h1>
+          
+          {/* SUBTÍTULO */}
+          <p className={`mt-6 text-2xl mb-3 font-semibold ${textBodyColor}`}>
+            {content.hero.subtitle}
           </p>
-          <div className="mt-6 flex items-center gap-4">
-            <a href="#contact" className="px-5 py-2 bg-primary text-white rounded shadow">Contacto</a>
-
-            <a href="https://open.spotify.com/playlist/TU_PLAYLIST_ID" target="_blank" rel="noreferrer" className="px-4 py-2 border rounded flex items-center gap-2">
-              <img src="/spotify-icon.png" alt="spotify" className="w-5 h-5" />
-              Reproducir Spotify
-            </a>
-
-            <a href="#projects" className="px-4 py-2 border rounded">Ver Proyectos</a>
-
-            <button onClick={toggleComic} className="ml-2 px-3 py-1 border rounded">
-              Comic Mode
-            </button>
+          
+          {/* DESCRIPCIÓN */}
+          <p className={`mt-4 text-base ${isComicMode ? 'text-black' : 'text-gray-600'}`}>
+            {content.hero.description}
+          </p>
+          
+          {/* BOTONES */}
+          <div className="flex flex-wrap gap-4 mt-10">
+            {/* Botón Contacto */}
+            <motion.a 
+              href="#contact"
+              className={`inline-flex items-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all ${primaryButtonClasses}`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Send size={20} />
+              {content.hero.cta_contact}
+            </motion.a>
+            
+            {/* Botón Spotify */}
+            <motion.a 
+              href="https://open.spotify.com/user/tu-usuario" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${secondaryButtonClasses}`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Music size={20} />
+              {content.hero.cta_spotify}
+            </motion.a>
           </div>
-        </div>
 
-        <div className="w-full md:w-1/2">
-          <img src="/hero-photo.jpg" alt="hero" className="w-full rounded-md shadow" />
-        </div>
+          {/* BOTONES DE CV */}
+          <div className="flex flex-wrap gap-4 mt-6">
+            <motion.a
+              href="/cv/David-Ramirez-CV.pdf"
+              target="_blank"
+              className={`inline-flex items-center gap-2 px-6 py-2 rounded-lg text-sm font-medium transition-all ${
+                isComicMode
+                  ? 'bg-white border-4 border-black text-black hover:bg-black hover:text-white'
+                  : 'border-2 border-dark-blue text-dark-blue hover:bg-dark-blue hover:text-white'
+              }`}
+              whileHover={{ scale: 1.05 }}
+            >
+              <Eye size={18} />
+              {content.hero.cv_view}
+            </motion.a>
+
+            <motion.a
+              href="/cv/David-Ramirez-CV.pdf"
+              download
+              className={`inline-flex items-center gap-2 px-6 py-2 rounded-lg text-sm font-medium transition-all ${
+                isComicMode
+                  ? 'bg-white border-4 border-black text-black hover:bg-black hover:text-white'
+                  : 'border-2 border-dark-blue text-dark-blue hover:bg-dark-blue hover:text-white'
+              }`}
+              whileHover={{ scale: 1.05 }}
+            >
+              <Download size={18} />
+              {content.hero.cv_download}
+            </motion.a>
+          </div>
+        </motion.div>
+
+        {/* LADO DERECHO: Imagen */}
+        <motion.div
+          initial={{ opacity: 0, x: 80 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="flex-shrink-0 relative w-full max-w-lg md:order-2 order-1"
+        >
+          <div className={`relative ${isComicMode ? 'animate-float' : ''}`}>
+            <Image
+              src="/hero-monitor-programmer.png"
+              alt="Programador trabajando"
+              width={700}
+              height={500}
+              priority
+              className={`rounded-lg w-full h-auto object-cover transition-all duration-300 ${
+                isComicMode 
+                  ? 'border-4 border-black shadow-comic-lg' 
+                  : 'shadow-2xl'
+              }`}
+            />
+            
+            {/* Efecto de "BANG!" en modo cómic */}
+            {isComicMode && (
+              <motion.div
+                className="absolute -top-8 -right-8 bg-comic-red text-white font-black text-3xl px-4 py-2 rotate-12 border-4 border-black shadow-comic"
+                initial={{ scale: 0, rotate: -180 }}
+                animate={{ scale: 1, rotate: 12 }}
+                transition={{ delay: 0.5, type: "spring" }}
+              >
+                POW!
+              </motion.div>
+            )}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
