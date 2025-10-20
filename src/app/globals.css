@@ -176,19 +176,49 @@ body.comic-mode ::-webkit-scrollbar-thumb {
 }
 
 /* ===========================
-   MODO OSCURO (Opcional)
+   MODO OSCURO (Automático según el sistema)
    =========================== */
 @media (prefers-color-scheme: dark) {
-  :root {
+  body:not(.comic-mode) {
     --bg-main: #0F172A;
     --bg-section: #1E293B;
     --text-primary: #F1F5F9;
     --text-secondary: #CBD5E1;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
   }
   
-  body:not(.comic-mode) {
-    background-color: #FFFFFF;
-    color: #060E28;
+  body:not(.comic-mode) .bg-light-gray {
+    background-color: var(--bg-section) !important;
+  }
+  
+  body:not(.comic-mode) .bg-white {
+    background-color: var(--bg-section) !important;
+  }
+  
+  body:not(.comic-mode) .text-dark-blue {
+    color: var(--text-primary) !important;
+  }
+  
+  body:not(.comic-mode) .text-gray-600,
+  body:not(.comic-mode) .text-gray-700 {
+    color: var(--text-secondary) !important;
+  }
+  
+  body:not(.comic-mode) .text-black {
+    color: var(--text-primary) !important;
+  }
+  
+  /* Tarjetas y secciones en modo oscuro */
+  body:not(.comic-mode) .shadow-2xl,
+  body:not(.comic-mode) .shadow-xl {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4) !important;
+  }
+  
+  /* Bordes en modo oscuro */
+  body:not(.comic-mode) .border-gray-200,
+  body:not(.comic-mode) .border-light-gray {
+    border-color: #374151 !important;
   }
 }
 
