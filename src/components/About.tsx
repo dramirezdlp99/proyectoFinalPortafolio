@@ -46,7 +46,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className={`py-20 px-6 md:px-16 lg:pl-80 ${sectionBg} relative overflow-hidden`}>
+    <section id="about" className={`py-20 px-6 md:px-16 ${sectionBg} relative overflow-hidden`}>
       
       {/* Efecto de fondo cómic */}
       {isComicMode && (
