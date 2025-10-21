@@ -60,7 +60,21 @@
     "cta": "Ver Proyecto"
   },
   "skills": {
-    "title": "Árbol de Habilidades"
+    "title": "Árbol de Habilidades",
+    "items": {
+      "mongodb": { "label": "MongoDB", "info": "Manejo de bases de datos NoSQL para escalabilidad." },
+      "frontend": { "label": "Frontend Dev", "info": "Creación de interfaces de usuario modernas y responsivas." },
+      "backend": { "label": "Backend Dev", "info": "Desarrollo de lógica de negocio y APIs robustas." },
+      "java": { "label": "Java", "info": "Dominio en programación orientada a objetos (POO) y sistemas empresariales." },
+      "typescript": { "label": "TypeScript", "info": "Escribo código JavaScript más seguro y escalable." },
+      "html": { "label": "HTML5/CSS3", "info": "Base fundamental del desarrollo web y estructuración." },
+      "tailwind": { "label": "Tailwind CSS", "info": "Desarrollo rápido de UI/UX con enfoque utility-first." },
+      "nextjs": { "label": "Next.js", "info": "Aplicaciones React full-stack con rendering optimizado (SSR/SSG)." },
+      "python": { "label": "Python", "info": "Automatización, scripting y análisis de datos." },
+      "github": { "label": "GitHub", "info": "Control de versiones y colaboración en equipo." },
+      "vscode": { "label": "VS Code", "info": "Entorno de desarrollo ágil y productivo." },
+      "react": { "label": "React", "info": "Biblioteca para interfaces de usuario interactivas." }
+    }
   },
   "services": {
     "title": "Servicios",

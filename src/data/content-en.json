@@ -60,7 +60,21 @@
     "cta": "View Project"
   },
   "skills": {
-    "title": "Skill Tree"
+    "title": "Skill Tree",
+    "items": {
+      "mongodb": { "label": "MongoDB", "info": "NoSQL database management for scalability." },
+      "frontend": { "label": "Frontend Dev", "info": "Building modern and responsive user interfaces." },
+      "backend": { "label": "Backend Dev", "info": "Developing business logic and robust APIs." },
+      "java": { "label": "Java", "info": "Mastery in object-oriented programming (OOP) and enterprise systems." },
+      "typescript": { "label": "TypeScript", "info": "Writing safer and more scalable JavaScript code." },
+      "html": { "label": "HTML5/CSS3", "info": "Fundamental basis of web development and structuring." },
+      "tailwind": { "label": "Tailwind CSS", "info": "Rapid UI/UX development with utility-first approach." },
+      "nextjs": { "label": "Next.js", "info": "Full-stack React applications with optimized rendering (SSR/SSG)." },
+      "python": { "label": "Python", "info": "Automation, scripting, and data analysis." },
+      "github": { "label": "GitHub", "info": "Version control and team collaboration." },
+      "vscode": { "label": "VS Code", "info": "Agile and productive development environment." },
+      "react": { "label": "React", "info": "Library for interactive user interfaces." }
+    }
   },
   "services": {
     "title": "Services",
