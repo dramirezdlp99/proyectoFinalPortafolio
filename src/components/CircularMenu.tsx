@@ -1,9 +1,10 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useComicMode } from "@/context/ComicModeContext";
 import { useLanguage } from "@/context/LanguageContext";
+import { useState, useEffect } from "react";
 import {
   Home,
   User,
@@ -17,74 +18,94 @@ import {
 export default function CircularMenu() {
   const { isComicMode } = useComicMode();
   const { content } = useLanguage();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Detectar scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const items = [
-    { icon: <Home size={20} />, href: "#inicio", label: content.nav.home },
-    { icon: <User size={20} />, href: "#about", label: content.nav.about },
-    { icon: <Briefcase size={20} />, href: "#projects", label: content.nav.projects },
-    { icon: <Layers size={20} />, href: "#services", label: content.nav.services },
-    { icon: <MessageSquare size={20} />, href: "#contact", label: content.nav.contact },
-    { icon: <Star size={20} />, href: "#testimonials", label: content.nav.testimonials },
-    { icon: <Code size={20} />, href: "#skills", label: content.nav.skills },
+    { icon: <Home size={isScrolled ? 16 : 20} />, href: "#inicio", label: content.nav.home },
+    { icon: <User size={isScrolled ? 16 : 20} />, href: "#about", label: content.nav.about },
+    { icon: <Briefcase size={isScrolled ? 16 : 20} />, href: "#projects", label: content.nav.projects },
+    { icon: <Code size={isScrolled ? 16 : 20} />, href: "#skills", label: content.nav.skills },
+    { icon: <Layers size={isScrolled ? 16 : 20} />, href: "#services", label: content.nav.services },
+    { icon: <Star size={isScrolled ? 16 : 20} />, href: "#testimonials", label: content.nav.testimonials },
+    { icon: <MessageSquare size={isScrolled ? 16 : 20} />, href: "#contact", label: content.nav.contact },
   ];
 
-  const radius = 95;
-  const menuSize = 'w-56 h-56';
+  // Tamaños según scroll
+  const radius = isScrolled ? 50 : 95;
+  const centerSize = isScrolled ? 'w-12 h-12' : 'w-24 h-24';
+  const containerSize = isScrolled ? 'w-32 h-32' : 'w-56 h-56';
 
   return (
-    <div className="fixed top-8 left-8 z-50" style={{ position: 'fixed' }}>
-      <motion.div
-        className={`relative ${menuSize} rounded-full flex items-center justify-center shadow-2xl overflow-hidden transition-all duration-300 ${
-          isComicMode
-            ? 'bg-comic-red border-4 border-black shadow-comic-lg'
-            : 'bg-dark-blue'
-        }`}
-        initial={{ scale: 0, rotate: -180 }}
-        animate={{ scale: 1, rotate: 0 }}
-        transition={{ type: "spring", stiffness: 200, damping: 20 }}
-      >
-        {/* Círculo animado de fondo */}
+    <motion.div
+      className={`fixed z-50 transition-all duration-500 ${
+        isScrolled 
+          ? 'top-4 left-4' 
+          : 'top-1/2 left-8 -translate-y-1/2'
+      }`}
+      animate={{
+        scale: isScrolled ? 0.6 : 1,
+      }}
+      transition={{ duration: 0.3 }}
+    >
+      <div className={`relative ${containerSize} transition-all duration-300`}>
+        {/* Semicírculo de fondo */}
         <motion.div
-          className={`absolute ${menuSize} rounded-full ${
+          className={`absolute inset-0 rounded-full transition-all duration-300 ${
             isComicMode
-              ? 'border-4 border-dashed border-black/30'
-              : 'border-4 border-dashed border-light-gray/30'
+              ? 'bg-comic-red border-4 border-black shadow-comic-lg'
+              : 'bg-dark-blue'
           }`}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          style={{
+            clipPath: 'polygon(0 0, 100% 0, 100% 100%, 50% 100%, 50% 50%, 0 50%)',
+          }}
         />
+
+        {/* Círculo giratorio decorativo (solo visible cuando no está scrolleado) */}
+        {!isScrolled && (
+          <motion.div
+            className={`absolute inset-0 rounded-full ${
+              isComicMode
+                ? 'border-4 border-dashed border-black/30'
+                : 'border-4 border-dashed border-light-gray/30'
+            }`}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+            style={{
+              clipPath: 'polygon(0 0, 100% 0, 100% 100%, 50% 100%, 50% 50%, 0 50%)',
+            }}
+          />
+        )}
 
         {/* Logo central */}
         <div 
-          className={`w-24 h-24 rounded-full flex items-center justify-center z-10 transition-all duration-300 ${
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${centerSize} rounded-full flex items-center justify-center z-10 transition-all duration-300 ${
             isComicMode
               ? 'bg-comic-yellow border-4 border-black shadow-comic'
               : 'bg-light-gray border-4 border-white shadow-inner'
           }`}
         >
-          {/* Usa tu logo. Si es PNG transparente, usa Image de Next.js */}
-          {isComicMode ? (
-            <Image
-              src="/drdlp-logo-comic.png"
-              alt="DRDLP Logo"
-              width={60}
-              height={60}
-              className="object-contain"
-            />
-          ) : (
-            <Image
-              src="/drdlp-logo.png"
-              alt="DRDLP Logo"
-              width={60}
-              height={60}
-              className="object-contain"
-            />
-          )}
+          <Image
+            src={isComicMode ? "/drdlp-logo-comic.png" : "/drdlp-logo.png"}
+            alt="DRDLP Logo"
+            width={isScrolled ? 30 : 60}
+            height={isScrolled ? 30 : 60}
+            className="object-contain"
+          />
         </div>
 
-        {/* Íconos en círculo */}
+        {/* Íconos en semicírculo */}
         {items.map((item, i) => {
-          const angle = (i / items.length) * 2 * Math.PI - Math.PI / 2;
+          // Ángulo solo para semicírculo izquierdo (180 grados)
+          const angle = (i / (items.length - 1)) * Math.PI - Math.PI / 2;
           const x = radius * Math.cos(angle);
           const y = radius * Math.sin(angle);
 
@@ -92,35 +113,45 @@ export default function CircularMenu() {
             <motion.a
               key={i}
               href={item.href}
+              className={`absolute group flex items-center justify-center rounded-full shadow-lg transition-all duration-300 z-20 ${
+                isScrolled ? 'w-8 h-8' : 'w-12 h-12'
+              } ${
+                isComicMode
+                  ? 'bg-comic-yellow text-black border-4 border-black shadow-comic'
+                  : 'bg-light-gray text-dark-blue border-2 border-dark-blue'
+              }`}
               style={{
                 top: `calc(50% + ${y}px)`,
                 left: `calc(50% + ${x}px)`,
-                transform: `translate(-50%, -50%)`,
+                transform: 'translate(-50%, -50%)',
               }}
-              className={`absolute group flex items-center justify-center w-12 h-12 rounded-full shadow-lg transition-all duration-300 z-20 ${
-                isComicMode
-                  ? 'bg-comic-yellow text-black border-4 border-black hover:bg-black hover:text-comic-yellow shadow-comic'
-                  : 'bg-light-gray text-dark-blue border-2 border-dark-blue hover:bg-dark-blue hover:text-white'
-              }`}
-              whileHover={{ scale: 1.2, rotate: 10 }}
+              whileHover={{ 
+                backgroundColor: isComicMode ? '#000' : '#060E28',
+                color: isComicMode ? '#FFD600' : '#fff',
+              }}
               title={item.label}
             >
               {item.icon}
 
+              {/* Círculo de hover (iluminación) */}
+              <motion.div
+                className="absolute inset-0 rounded-full bg-light-gray opacity-0 group-hover:opacity-30 transition-opacity duration-300 pointer-events-none"
+              />
+
               {/* Tooltip */}
-              <span className={`absolute px-3 py-1 rounded-md font-semibold text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none ${
-                i < 3 ? 'top-full mt-2' : 'bottom-full mb-2'
-              } ${
-                isComicMode
-                  ? 'bg-black text-comic-yellow border-2 border-comic-yellow'
-                  : 'bg-dark-blue text-white'
-              }`}>
-                {item.label}
-              </span>
+              {!isScrolled && (
+                <span className={`absolute left-full ml-4 px-3 py-1 rounded-md font-semibold text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none ${
+                  isComicMode
+                    ? 'bg-black text-comic-yellow border-2 border-comic-yellow'
+                    : 'bg-dark-blue text-white'
+                }`}>
+                  {item.label}
+                </span>
+              )}
             </motion.a>
           );
         })}
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   );
 }
