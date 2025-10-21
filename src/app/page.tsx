@@ -22,6 +22,8 @@ export default function HomePage() {
       data-comic-mode={isComicMode}
       className={`${isComicMode ? '' : 'bg-light-gray'} min-h-screen relative transition-all duration-300`}
     >
+      {/* BARRA LATERAL IZQUIERDA - MÁS PEQUEÑA */}
+      <div className="fixed left-0 top-0 h-full w-32 bg-dark-blue z-30 hidden lg:block" />
       
       {/* COMPONENTES FLOTANTES Y FIJOS */}
       <CircularMenu />
@@ -30,19 +32,14 @@ export default function HomePage() {
       <ChatBot />
       
       {/* CONTENIDO PRINCIPAL */}
-      <main className="flex-1 w-full">
-        {/* Contenido con margen para el menú circular */}
-        <div className="lg:pl-0 transition-all duration-300">
-          <Hero />
-          <About />
-          <Projects />
-          <SkillTree />
-          <Services />
-          <Testimonials />
-          <Contact />
-        </div>
-
-        {/* Footer (sin margen, ocupa todo el ancho) */}
+      <main className="flex-1 w-full lg:ml-32">
+        <Hero />
+        <About />
+        <Projects />
+        <SkillTree />
+        <Services />
+        <Testimonials />
+        <Contact />
         <Footer />
       </main>
     </div>
