@@ -33,8 +33,8 @@ export default function Contact() {
   }
 
   // Estilos condicionales
-  const sectionBg = isComicMode ? 'bg-white' : 'bg-light-gray';
-  const titleClasses = isComicMode ? 'section-title font-comic text-comic-red' : 'text-dark-blue';
+  const sectionBg = isComicMode ? 'bg-comic-blue' : 'bg-dark-blue';
+  const titleClasses = isComicMode ? 'section-title font-comic text-comic-yellow' : 'text-white';
   const inputClasses = isComicMode
     ? 'border-4 border-black bg-white text-black font-bold focus:ring-4 focus:ring-comic-yellow'
     : 'border-2 border-gray-300 bg-white text-gray-900 focus:ring-2 focus:ring-dark-blue';
@@ -49,7 +49,7 @@ export default function Contact() {
     : 'bg-dark-blue text-white hover:bg-dark-blue/90';
 
   return (
-    <section id="contact" className={`py-20 px-6 md:px-16 lg:pl-80 ${sectionBg} relative overflow-hidden`}>
+    <section id="contact" className={`py-20 px-6 md:px-16 ${sectionBg} relative overflow-hidden`}>
       
       {/* Efecto de fondo cómic */}
       {isComicMode && (
