@@ -10,30 +10,36 @@ import {
 import { motion } from 'framer-motion';
 
 // Skill Map con iconos válidos
-const skillMap = {
-  mongodb: { label: 'MongoDB', icon: Database, info: 'Manejo de bases de datos NoSQL para escalabilidad.' },
-  frontend: { label: 'Frontend Dev', icon: Layout, info: 'Creación de interfaces de usuario modernas y responsivas.' },
-  backend: { label: 'Backend Dev', icon: Server, info: 'Desarrollo de lógica de negocio y APIs robustas.' },
-  java: { label: 'Java', icon: Code, info: 'Dominio en programación orientada a objetos (POO) y sistemas empresariales.' },
-  typescript: { label: 'TypeScript', icon: Terminal, info: 'Escribo código JavaScript más seguro y escalable.' },
-  html: { label: 'HTML5/CSS3', icon: FileCode, info: 'Base fundamental del desarrollo web y estructuración.' },
-  tailwind: { label: 'Tailwind CSS', icon: Palette, info: 'Desarrollo rápido de UI/UX con enfoque utility-first.' },
-  nextjs: { label: 'Next.js', icon: Globe, info: 'Aplicaciones React full-stack con rendering optimizado (SSR/SSG).' },
-  python: { label: 'Python', icon: Zap, info: 'Automatización, scripting y análisis de datos.' },
-  github: { label: 'GitHub', icon: GitBranch, info: 'Control de versiones y colaboración en equipo.' },
-  vscode: { label: 'VS Code', icon: Cpu, info: 'Entorno de desarrollo ágil y productivo.' },
-  react: { label: 'React', icon: Box, info: 'Biblioteca para interfaces de usuario interactivas.' },
+const getSkillIcon = (skillKey: string) => {
+  const iconMap: { [key: string]: React.ReactNode } = {
+    mongodb: <Database size={24} />,
+    frontend: <Layout size={24} />,
+    backend: <Server size={24} />,
+    java: <Code size={24} />,
+    typescript: <Terminal size={24} />,
+    html: <FileCode size={24} />,
+    tailwind: <Palette size={24} />,
+    nextjs: <Globe size={24} />,
+    python: <Zap size={24} />,
+    github: <GitBranch size={24} />,
+    vscode: <Cpu size={24} />,
+    react: <Box size={24} />,
+  };
+  return iconMap[skillKey];
 };
 
 interface SkillNodeProps {
-  skillKey: keyof typeof skillMap;
+  skillKey: string;
   top: string;
   left: string;
   isComicMode: boolean;
 }
 
 const SkillNode: React.FC<SkillNodeProps> = ({ skillKey, top, left, isComicMode }) => {
-  const { label, icon: Icon, info } = skillMap[skillKey];
+  const { content } = useLanguage();
+  const skillData = content.skills.items[skillKey as keyof typeof content.skills.items];
+  const { label, info } = skillData;
+  const Icon = getSkillIcon(skillKey);
   
   const nodeClasses = isComicMode 
     ? 'bg-comic-red text-white border-4 border-black shadow-comic' 
@@ -56,7 +62,7 @@ const SkillNode: React.FC<SkillNodeProps> = ({ skillKey, top, left, isComicMode 
         whileHover={{ scale: 1.2, rotate: 10 }}
         title={label}
       >
-        <Icon size={24} />
+        {Icon}
       </motion.div>
 
       {/* Tooltip */}
@@ -72,13 +78,29 @@ export default function SkillTree() {
   const { isComicMode } = useComicMode();
   const { content } = useLanguage();
   
+  // Mapeamos las habilidades con sus iconos
+  const skillIconMap: { [key: string]: React.ReactNode } = {
+    mongodb: <Database size={24} />,
+    frontend: <Layout size={24} />,
+    backend: <Server size={24} />,
+    java: <Code size={24} />,
+    typescript: <Terminal size={24} />,
+    html: <FileCode size={24} />,
+    tailwind: <Palette size={24} />,
+    nextjs: <Globe size={24} />,
+    python: <Zap size={24} />,
+    github: <GitBranch size={24} />,
+    vscode: <Cpu size={24} />,
+    react: <Box size={24} />,
+  };
+  
   const titleClasses = isComicMode ? 'section-title font-comic text-comic-red' : 'text-dark-blue';
   const containerClasses = isComicMode
     ? 'border-4 border-black shadow-comic-lg bg-comic-yellow'
     : 'border-4 border-dark-blue bg-white shadow-2xl';
   
   return (
-    <section id="skills" className={`py-20 px-6 md:px-16 lg:pl-80 ${isComicMode ? 'bg-white' : 'bg-light-gray'} relative overflow-hidden`}>
+    <section id="skills" className={`py-20 px-6 md:px-16 ${isComicMode ? 'bg-white' : 'bg-light-gray'} relative overflow-hidden`}>
       
       {/* Efecto de fondo cómic */}
       {isComicMode && (
