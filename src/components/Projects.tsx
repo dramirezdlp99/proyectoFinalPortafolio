@@ -50,7 +50,7 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className={`py-20 px-6 md:px-16 lg:pl-80 ${sectionBg} relative overflow-hidden`}>
+    <section id="projects" className={`py-20 px-4 md:px-8 ${sectionBg} relative overflow-hidden`}>
       
       {/* Efecto de fondo cómic */}
       {isComicMode && (
@@ -69,7 +69,7 @@ export default function Projects() {
         </>
       )}
 
-      <div className="container mx-auto relative z-10">
+      <div className="section-container relative z-10">
         {/* Título */}
         <motion.h2 
           className={`text-4xl font-bold text-center mb-12 ${titleClasses}`}

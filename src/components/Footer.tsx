@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useComicMode } from '@/context/ComicModeContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -10,8 +10,20 @@ import { motion } from 'framer-motion';
 export default function Footer() {
   const { isComicMode } = useComicMode();
   const { content } = useLanguage();
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Estilos condicionales
+  useEffect(() => {
+    const checkDarkMode = () => {
+      setIsDarkMode(document.documentElement.classList.contains('dark'));
+    };
+    
+    checkDarkMode();
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    
+    return () => observer.disconnect();
+  }, []);
+
   const footerBg = isComicMode 
     ? 'bg-white border-t-4 border-black' 
     : 'bg-light-gray';
@@ -26,7 +38,11 @@ export default function Footer() {
     ? 'comic-button-alt'
     : 'bg-white text-dark-blue hover:bg-light-gray';
 
-  // Menú de navegación
+  const getTextColor = () => {
+    if (isComicMode) return 'white';
+    return isDarkMode ? '#060E28' : '#E2E2E2';
+  };
+
   const navItems = [
     { label: content.nav.home, href: '#inicio' },
     { label: content.nav.about, href: '#about' },
@@ -39,7 +55,6 @@ export default function Footer() {
     <footer id="footer" className={`py-12 px-6 md:px-16 ${footerBg}`}>
       <div className="container mx-auto max-w-6xl">
         
-        {/* BANNER DE CTA */}
         <motion.div 
           className={`p-6 md:p-8 rounded-xl mb-12 flex flex-col md:flex-row items-center justify-between gap-6 ${bannerClasses}`}
           initial={{ opacity: 0, y: 50 }}
@@ -53,9 +68,10 @@ export default function Footer() {
             }`}>
               {content.footer.cta_title}
             </h3>
-            <p className={`text-sm md:text-base mt-1 ${
-              isComicMode ? 'text-white font-semibold' : 'text-gray-200'
-            }`}>
+            <p 
+              className={`text-sm md:text-base mt-1 ${isComicMode ? 'text-white font-semibold' : ''}`}
+              style={{ color: getTextColor() }}
+            >
               {content.footer.cta_subtitle}
             </p>
           </div>
@@ -69,10 +85,8 @@ export default function Footer() {
           </motion.a>
         </motion.div>
 
-        {/* GRID DE INFORMACIÓN */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           
-          {/* COLUMNA 1: Logo y Copyright */}
           <div>
             <div className={`w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 ${
               isComicMode
@@ -104,7 +118,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* COLUMNA 2: Navegación */}
           <div>
             <h4 className={`font-bold mb-4 ${textClasses}`}>
               {content.footer.nav_title}
@@ -127,7 +140,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* COLUMNA 3: Frase motivacional */}
           <div className="md:col-span-1">
             <h4 className={`font-bold mb-4 ${textClasses}`}>
               {content.footer.motto_title}
@@ -139,7 +151,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* COLUMNA 4: Redes Sociales */}
           <div>
             <h4 className={`font-bold mb-4 ${textClasses}`}>
               {content.footer.contact_title}
@@ -177,7 +188,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* DIVIDER */}
         <div className={`border-t pt-6 ${
           isComicMode ? 'border-black border-t-4' : 'border-gray-300'
         }`}>

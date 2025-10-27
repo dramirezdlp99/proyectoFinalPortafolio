@@ -15,7 +15,7 @@ interface Message {
 
 export default function ChatBot() {
   const { isComicMode } = useComicMode();
-  const { content } = useLanguage();
+  const { content, language } = useLanguage(); // ⬅️ IMPORTANTE: Obtener language
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -62,7 +62,7 @@ export default function ChatBot() {
       content: m.text
     }));
     
-    const payload = { message: userMessage, history };
+    const payload = { message: userMessage, history, language }; // Enviamos el idioma
 
     try {
       const res = await axios.post('/api/gemini', payload); 

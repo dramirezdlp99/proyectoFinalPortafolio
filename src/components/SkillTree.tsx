@@ -1,6 +1,7 @@
 'use client';
 
-import React from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { useComicMode } from '@/context/ComicModeContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { 
@@ -8,6 +9,7 @@ import {
   Layout, Server, FileCode, Palette, Cpu, Box
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+
 
 // Skill Map con iconos válidos
 const getSkillIcon = (skillKey: string) => {
@@ -28,12 +30,14 @@ const getSkillIcon = (skillKey: string) => {
   return iconMap[skillKey];
 };
 
+
 interface SkillNodeProps {
   skillKey: string;
   top: string;
   left: string;
   isComicMode: boolean;
 }
+
 
 const SkillNode: React.FC<SkillNodeProps> = ({ skillKey, top, left, isComicMode }) => {
   const { content } = useLanguage();
@@ -47,6 +51,7 @@ const SkillNode: React.FC<SkillNodeProps> = ({ skillKey, top, left, isComicMode 
   const tooltipClasses = isComicMode 
     ? 'bg-black border-4 border-comic-yellow text-comic-yellow font-comic' 
     : 'bg-dark-blue text-white';
+
 
   return (
     <motion.div 
@@ -65,6 +70,7 @@ const SkillNode: React.FC<SkillNodeProps> = ({ skillKey, top, left, isComicMode 
         {Icon}
       </motion.div>
 
+
       {/* Tooltip */}
       <div className={`absolute hidden group-hover:block bottom-full mb-3 left-1/2 -translate-x-1/2 w-max max-w-xs p-3 text-xs rounded-lg shadow-xl z-20 whitespace-normal ${tooltipClasses}`}>
         <p className="font-bold mb-1">{label}</p>
@@ -74,9 +80,23 @@ const SkillNode: React.FC<SkillNodeProps> = ({ skillKey, top, left, isComicMode 
   );
 };
 
+
 export default function SkillTree() {
   const { isComicMode } = useComicMode();
   const { content } = useLanguage();
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const checkDarkMode = () => {
+      setIsDarkMode(document.documentElement.classList.contains('dark'));
+    };
+    
+    checkDarkMode();
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    
+    return () => observer.disconnect();
+  }, []);
   
   // Mapeamos las habilidades con sus iconos
   const skillIconMap: { [key: string]: React.ReactNode } = {
@@ -99,8 +119,14 @@ export default function SkillTree() {
     ? 'border-4 border-black shadow-comic-lg bg-comic-yellow'
     : 'border-4 border-dark-blue bg-white shadow-2xl';
   
+  // NUEVO: Color de líneas según modo
+  const getLineColor = () => {
+    if (isComicMode) return "#000";
+    return isDarkMode ? "#E2E2E2" : "#060E28";
+  };
+  
   return (
-    <section id="skills" className={`py-20 px-6 md:px-16 ${isComicMode ? 'bg-white' : 'bg-light-gray'} relative overflow-hidden`}>
+    <section id="skills" className={`py-20 px-4 md:px-8 ${isComicMode ? 'bg-white' : 'bg-light-gray'} relative overflow-hidden`}>
       
       {/* Efecto de fondo cómic */}
       {isComicMode && (
@@ -109,7 +135,8 @@ export default function SkillTree() {
         </div>
       )}
 
-      <div className="container mx-auto relative z-10">
+
+      <div className="container mx-auto relative z-10 max-w-7xl">
         {/* Título */}
         <motion.h2 
           className={`text-4xl font-bold text-center mb-16 ${titleClasses}`}
@@ -121,6 +148,7 @@ export default function SkillTree() {
           {content.skills.title}
         </motion.h2>
 
+
         {/* Contenedor del Árbol */}
         <motion.div 
           className={`relative w-full max-w-4xl h-[700px] mx-auto rounded-xl overflow-hidden ${containerClasses}`}
@@ -130,15 +158,15 @@ export default function SkillTree() {
           transition={{ duration: 0.6 }}
         >
           
-          {/* Líneas de Conexión */}
+          {/* Líneas de Conexión - CORREGIDO */}
           <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
             {/* Línea vertical principal */}
-            <line x1="50%" y1="0%" x2="50%" y2="100%" stroke={isComicMode ? "#000" : "#060E28"} strokeWidth="2" strokeDasharray="5,5" opacity="0.3" />
+            <line x1="50%" y1="0%" x2="50%" y2="100%" stroke={getLineColor()} strokeWidth="2" strokeDasharray="5,5" opacity="0.3" />
             
             {/* Líneas horizontales */}
-            <line x1="20%" y1="20%" x2="80%" y2="20%" stroke={isComicMode ? "#000" : "#060E28"} strokeWidth="2" strokeDasharray="5,5" opacity="0.3" />
-            <line x1="10%" y1="50%" x2="90%" y2="50%" stroke={isComicMode ? "#000" : "#060E28"} strokeWidth="2" strokeDasharray="5,5" opacity="0.3" />
-            <line x1="20%" y1="80%" x2="80%" y2="80%" stroke={isComicMode ? "#000" : "#060E28"} strokeWidth="2" strokeDasharray="5,5" opacity="0.3" />
+            <line x1="20%" y1="20%" x2="80%" y2="20%" stroke={getLineColor()} strokeWidth="2" strokeDasharray="5,5" opacity="0.3" />
+            <line x1="10%" y1="50%" x2="90%" y2="50%" stroke={getLineColor()} strokeWidth="2" strokeDasharray="5,5" opacity="0.3" />
+            <line x1="20%" y1="80%" x2="80%" y2="80%" stroke={getLineColor()} strokeWidth="2" strokeDasharray="5,5" opacity="0.3" />
           </svg>
           
           {/* NODOS DE HABILIDAD */}
@@ -147,17 +175,20 @@ export default function SkillTree() {
           <SkillNode skillKey="frontend" top="10%" left="30%" isComicMode={isComicMode} />
           <SkillNode skillKey="backend" top="10%" left="70%" isComicMode={isComicMode} />
 
+
           {/* Nivel 2: Tecnologías Core */}
           <SkillNode skillKey="nextjs" top="35%" left="20%" isComicMode={isComicMode} />
           <SkillNode skillKey="react" top="35%" left="40%" isComicMode={isComicMode} />
           <SkillNode skillKey="java" top="35%" left="60%" isComicMode={isComicMode} />
           <SkillNode skillKey="mongodb" top="35%" left="80%" isComicMode={isComicMode} />
 
+
           {/* Nivel 3: Fundamentos */}
           <SkillNode skillKey="html" top="65%" left="15%" isComicMode={isComicMode} />
           <SkillNode skillKey="tailwind" top="65%" left="35%" isComicMode={isComicMode} />
           <SkillNode skillKey="typescript" top="65%" left="65%" isComicMode={isComicMode} />
           <SkillNode skillKey="python" top="65%" left="85%" isComicMode={isComicMode} />
+
 
           {/* Nivel 4: Herramientas */}
           <SkillNode skillKey="github" top="90%" left="35%" isComicMode={isComicMode} />

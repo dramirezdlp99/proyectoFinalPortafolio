@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { Sparkles } from 'lucide-react';
+import Image from 'next/image';
 import { useComicMode } from '@/context/ComicModeContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -30,21 +30,23 @@ export default function ComicModeToggle() {
         onClick={toggleComicMode}
         className={`group relative w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 shadow-xl hover:scale-110 ${
           isComicMode
-            ? 'bg-comic-yellow border-4 border-black shadow-comic'
+            ? 'bg-comic-red border-4 border-black shadow-comic'
             : 'bg-dark-blue border-2 border-light-gray'
         }`}
         title={content.comicMode.tooltip}
         aria-label="Toggle Comic Mode"
       >
-        {/* Ícono con animación */}
-        <motion.div
-          animate={{ rotate: isComicMode ? 360 : 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Sparkles 
-            className={`w-7 h-7 ${isComicMode ? 'text-black' : 'text-white'}`} 
+        {/* Imagen de Spider-Man (guárdala como spiderman-logo.png en /public/) */}
+        <div className="relative w-10 h-10">
+          <Image
+            src="/spiderman-logo.png"
+            alt="Spider-Man"
+            fill
+            className={`object-contain transition-all duration-300 ${
+              isComicMode ? 'brightness-0 invert' : ''
+            }`}
           />
-        </motion.div>
+        </div>
 
         {/* Tooltip */}
         <span className="absolute -bottom-12 left-1/2 -translate-x-1/2 px-3 py-1 bg-dark-blue text-white text-xs font-semibold rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
@@ -58,7 +60,7 @@ export default function ComicModeToggle() {
               {[...Array(8)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute w-2 h-2 bg-comic-red rounded-full"
+                  className="absolute w-2 h-2 bg-comic-yellow rounded-full"
                   initial={{ scale: 0, x: 0, y: 0 }}
                   animate={{
                     scale: [0, 1, 0],

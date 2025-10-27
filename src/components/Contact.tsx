@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import { useComicMode } from '@/context/ComicModeContext';
@@ -14,6 +14,19 @@ export default function Contact() {
   const [form, setForm] = useState({ name: '', lastname: '', email: '', message: '' });
   const [status, setStatus] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const checkDarkMode = () => {
+      setIsDarkMode(document.documentElement.classList.contains('dark'));
+    };
+    
+    checkDarkMode();
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    
+    return () => observer.disconnect();
+  }, []);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -32,7 +45,6 @@ export default function Contact() {
     }
   }
 
-  // Estilos condicionales
   const sectionBg = isComicMode ? 'bg-comic-blue' : 'bg-dark-blue';
   const titleClasses = isComicMode ? 'section-title font-comic text-comic-yellow' : 'text-white';
   const inputClasses = isComicMode
@@ -48,10 +60,14 @@ export default function Contact() {
     ? 'bg-comic-yellow border-4 border-black text-black hover:bg-black hover:text-comic-yellow shadow-comic'
     : 'bg-dark-blue text-white hover:bg-dark-blue/90';
 
+  const getTextColor = () => {
+    if (isComicMode) return undefined;
+    return isDarkMode ? '#060E28' : '#E2E2E2';
+  };
+
   return (
     <section id="contact" className={`py-20 px-6 md:px-16 ${sectionBg} relative overflow-hidden`}>
       
-      {/* Efecto de fondo cómic */}
       {isComicMode && (
         <div className="absolute inset-0 opacity-5 pointer-events-none">
           <div className="comic-halftone w-full h-full"></div>
@@ -59,7 +75,6 @@ export default function Contact() {
       )}
 
       <div className="container mx-auto relative z-10">
-        {/* Título */}
         <motion.h2 
           className={`text-4xl font-bold text-center mb-4 ${titleClasses}`}
           initial={{ opacity: 0, y: -50 }}
@@ -70,15 +85,15 @@ export default function Contact() {
           {content.contact.title}
         </motion.h2>
 
-        <p className={`text-center mb-12 text-lg ${
-          isComicMode ? 'text-black font-semibold' : 'text-gray-600'
-        }`}>
+        <p 
+          className={`text-center mb-12 text-lg ${isComicMode ? 'text-black font-semibold' : ''}`}
+          style={{ color: getTextColor() }}
+        >
           {content.contact.subtitle}
         </p>
 
         <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
           
-          {/* LADO IZQUIERDO: Ilustración */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -97,7 +112,6 @@ export default function Contact() {
                 }`}
               />
               
-              {/* Bocadillo en modo cómic */}
               {isComicMode && (
                 <motion.div
                   className="absolute -top-8 -right-8 bg-comic-yellow text-black font-black text-xl px-4 py-2 rounded-lg border-4 border-black shadow-comic rotate-6"
@@ -112,7 +126,6 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* LADO DERECHO: Formulario */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -121,7 +134,6 @@ export default function Contact() {
           >
             <form onSubmit={submit} className="space-y-4">
               
-              {/* Nombre */}
               <div>
                 <input
                   type="text"
@@ -134,7 +146,6 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Apellido */}
               <div>
                 <input
                   type="text"
@@ -146,7 +157,6 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Email */}
               <div>
                 <input
                   type="email"
@@ -159,7 +169,6 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Mensaje */}
               <div>
                 <textarea
                   name="message"
@@ -172,7 +181,6 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Botones */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.button
                   type="submit"
@@ -196,7 +204,6 @@ export default function Contact() {
                 </motion.a>
               </div>
 
-              {/* Status message */}
               {status && (
                 <motion.p
                   initial={{ opacity: 0, y: -10 }}
@@ -212,11 +219,11 @@ export default function Contact() {
               )}
             </form>
 
-            {/* Redes Sociales */}
             <div className="mt-8">
-              <p className={`text-center mb-4 font-semibold ${
-                isComicMode ? 'text-black' : 'text-gray-700'
-              }`}>
+              <p 
+                className={`text-center mb-4 font-semibold ${isComicMode ? 'text-black' : ''}`}
+                style={{ color: getTextColor() }}
+              >
                 {content.footer.contact_title}
               </p>
               <div className="flex justify-center gap-4">
