@@ -1,6 +1,7 @@
 'use client';
 
 
+
 import React, { useState, useEffect } from 'react';
 import { useComicMode } from '@/context/ComicModeContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -9,6 +10,7 @@ import {
   Layout, Server, FileCode, Palette, Cpu, Box
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+
 
 
 // Skill Map con iconos válidos
@@ -31,6 +33,7 @@ const getSkillIcon = (skillKey: string) => {
 };
 
 
+
 interface SkillNodeProps {
   skillKey: string;
   top: string;
@@ -39,11 +42,16 @@ interface SkillNodeProps {
 }
 
 
+
 const SkillNode: React.FC<SkillNodeProps> = ({ skillKey, top, left, isComicMode }) => {
   const { content } = useLanguage();
   const skillData = content.skills.items[skillKey as keyof typeof content.skills.items];
   const { label, info } = skillData;
   const Icon = getSkillIcon(skillKey);
+  
+  // Detectar si está en el borde derecho (left > 70%)
+  const leftPercent = parseInt(left);
+  const isRightSide = leftPercent > 70;
   
   const nodeClasses = isComicMode 
     ? 'bg-comic-red text-white border-4 border-black shadow-comic' 
@@ -52,6 +60,10 @@ const SkillNode: React.FC<SkillNodeProps> = ({ skillKey, top, left, isComicMode 
     ? 'bg-black border-4 border-comic-yellow text-comic-yellow font-comic' 
     : 'bg-dark-blue text-white';
 
+  // Posicionamiento del tooltip
+  const tooltipPosition = isRightSide 
+    ? 'bottom-full mb-3 right-0 translate-x-0' 
+    : 'bottom-full mb-3 left-1/2 -translate-x-1/2';
 
   return (
     <motion.div 
@@ -71,8 +83,9 @@ const SkillNode: React.FC<SkillNodeProps> = ({ skillKey, top, left, isComicMode 
       </motion.div>
 
 
-      {/* Tooltip */}
-      <div className={`absolute hidden group-hover:block bottom-full mb-3 left-1/2 -translate-x-1/2 w-max max-w-xs p-3 text-xs rounded-lg shadow-xl z-20 whitespace-normal ${tooltipClasses}`}>
+
+      {/* Tooltip con posicionamiento inteligente */}
+      <div className={`absolute hidden group-hover:block ${tooltipPosition} w-max max-w-xs p-3 text-xs rounded-lg shadow-xl z-20 whitespace-normal ${tooltipClasses}`}>
         <p className="font-bold mb-1">{label}</p>
         <p>{info}</p>
       </div>
@@ -81,10 +94,12 @@ const SkillNode: React.FC<SkillNodeProps> = ({ skillKey, top, left, isComicMode 
 };
 
 
+
 export default function SkillTree() {
   const { isComicMode } = useComicMode();
   const { content } = useLanguage();
   const [isDarkMode, setIsDarkMode] = useState(false);
+
 
   useEffect(() => {
     const checkDarkMode = () => {
@@ -136,6 +151,7 @@ export default function SkillTree() {
       )}
 
 
+
       <div className="container mx-auto relative z-10 max-w-7xl">
         {/* Título */}
         <motion.h2 
@@ -147,6 +163,7 @@ export default function SkillTree() {
         >
           {content.skills.title}
         </motion.h2>
+
 
 
         {/* Contenedor del Árbol */}
@@ -176,6 +193,7 @@ export default function SkillTree() {
           <SkillNode skillKey="backend" top="10%" left="70%" isComicMode={isComicMode} />
 
 
+
           {/* Nivel 2: Tecnologías Core */}
           <SkillNode skillKey="nextjs" top="35%" left="20%" isComicMode={isComicMode} />
           <SkillNode skillKey="react" top="35%" left="40%" isComicMode={isComicMode} />
@@ -183,11 +201,13 @@ export default function SkillTree() {
           <SkillNode skillKey="mongodb" top="35%" left="80%" isComicMode={isComicMode} />
 
 
+
           {/* Nivel 3: Fundamentos */}
           <SkillNode skillKey="html" top="65%" left="15%" isComicMode={isComicMode} />
           <SkillNode skillKey="tailwind" top="65%" left="35%" isComicMode={isComicMode} />
           <SkillNode skillKey="typescript" top="65%" left="65%" isComicMode={isComicMode} />
           <SkillNode skillKey="python" top="65%" left="85%" isComicMode={isComicMode} />
+
 
 
           {/* Nivel 4: Herramientas */}

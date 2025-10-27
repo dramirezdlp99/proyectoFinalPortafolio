@@ -7,12 +7,14 @@
 
 
 
+
 /* ===========================
    TAILWIND BASE, COMPONENTS, UTILITIES
    =========================== */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 
 
@@ -29,6 +31,7 @@
 
 
 
+
 /* ===========================
    CONFIGURACIÓN BASE
    =========================== */
@@ -40,10 +43,12 @@
 
 
 
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
 }
+
 
 
 
@@ -54,6 +59,7 @@ body {
   overflow-x: hidden;
   transition: background-color 0.3s ease;
 }
+
 
 
 
@@ -83,10 +89,12 @@ body.comic-mode {
 
 
 
+
 body.comic-mode * {
   font-family: 'Bangers', 'Comic Neue', cursive !important;
   letter-spacing: 0.5px;
 }
+
 
 
 
@@ -110,6 +118,7 @@ body.comic-mode * {
     @apply translate-x-1 translate-y-1 shadow-none;
   }
 
+
   .section-title {
     @apply text-5xl font-black uppercase tracking-wide;
     text-shadow: 
@@ -119,17 +128,20 @@ body.comic-mode * {
       -1px 1px 0px #000;
   }
 
+
   .text-shadow-comic {
     text-shadow: 
       2px 2px 0px #000,
       -1px -1px 0px #000;
   }
 
+
   .comic-halftone {
     background-image: 
       radial-gradient(circle, black 1px, transparent 1px);
     background-size: 8px 8px;
   }
+
 
   /* CLASE ESPECÍFICA PARA TÍTULO HERO */
   .hero-title-custom {
@@ -139,12 +151,14 @@ body.comic-mode * {
 
 
 
+
 /* ===========================
    FIX TÍTULO EN MODO CÓMICO
    =========================== */
 body.comic-mode .hero-title-custom {
   color: #E2E2E2 !important;
 }
+
 
 
 
@@ -165,9 +179,11 @@ body.comic-mode .hero-title-custom {
 
 
 
+
 .comic-pop {
   animation: comic-pop 0.3s ease-in-out;
 }
+
 
 
 
@@ -184,9 +200,11 @@ body.comic-mode .hero-title-custom {
 
 
 
+
 .zoom-in {
   animation: zoom-in 0.5s ease-out;
 }
+
 
 
 
@@ -199,9 +217,11 @@ body.comic-mode .hero-title-custom {
 
 
 
+
 ::-webkit-scrollbar-track {
   background: #E2E2E2;
 }
+
 
 
 
@@ -212,9 +232,11 @@ body.comic-mode .hero-title-custom {
 
 
 
+
 ::-webkit-scrollbar-thumb:hover {
   background: #0A1540;
 }
+
 
 
 
@@ -222,6 +244,7 @@ body.comic-mode ::-webkit-scrollbar-thumb {
   background: #FF3B3B;
   border: 2px solid #000;
 }
+
 
 
 
@@ -238,35 +261,43 @@ html.dark body:not(.comic-mode) {
   color: var(--text-primary);
 }
 
+
 html.dark:not(.comic-mode) .bg-light-gray {
   background-color: #0F1936 !important;
 }
+
 
 html.dark:not(.comic-mode) .bg-white {
   background-color: #060E28 !important;
 }
 
+
 html.dark:not(.comic-mode) .text-dark-blue {
   color: #E2E2E2 !important;
 }
+
 
 html.dark:not(.comic-mode) .text-gray-600,
 html.dark:not(.comic-mode) .text-gray-700 {
   color: #B0B0B0 !important;
 }
 
+
 html.dark:not(.comic-mode) .text-black {
   color: #E2E2E2 !important;
 }
+
 
 html.dark:not(.comic-mode) .text-white {
   color: #060E28 !important;
 }
 
+
 /* OVERRIDE PARA TÍTULO HERO EN MODO OSCURO */
 html.dark:not(.comic-mode) .hero-title-custom {
   color: #E2E2E2 !important;
 }
+
 
 /* Tarjetas y secciones en modo oscuro */
 html.dark:not(.comic-mode) .shadow-2xl,
@@ -274,15 +305,18 @@ html.dark:not(.comic-mode) .shadow-xl {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.8), 0 10px 10px -5px rgba(0, 0, 0, 0.6) !important;
 }
 
+
 /* Bordes en modo oscuro */
 html.dark:not(.comic-mode) .border-gray-200,
 html.dark:not(.comic-mode) .border-light-gray {
   border-color: #2A3F5F !important;
 }
 
+
 html.dark:not(.comic-mode) .border-dark-blue {
   border-color: #E2E2E2 !important;
 }
+
 
 /* Botones en modo oscuro - SIN AZUL CLARO */
 html.dark:not(.comic-mode) .bg-dark-blue {
@@ -290,22 +324,27 @@ html.dark:not(.comic-mode) .bg-dark-blue {
   color: #060E28 !important;
 }
 
+
 html.dark:not(.comic-mode) .bg-dark-blue:hover {
   background-color: #C8C8C8 !important;
 }
+
 
 /* Scrollbar en modo oscuro */
 html.dark:not(.comic-mode) ::-webkit-scrollbar-track {
   background: #0F1936;
 }
 
+
 html.dark:not(.comic-mode) ::-webkit-scrollbar-thumb {
   background: #E2E2E2;
 }
 
+
 html.dark:not(.comic-mode) ::-webkit-scrollbar-thumb:hover {
   background: #C8C8C8;
 }
+
 
 
 
@@ -318,10 +357,12 @@ html.dark:not(.comic-mode) ::-webkit-scrollbar-thumb:hover {
 
 
 
+
 /* Contenedor perfectamente centrado */
 .section-container {
   @apply container mx-auto px-6 md:px-12 lg:px-16 max-w-6xl;
 }
+
 
 
 
@@ -334,10 +375,12 @@ html.dark:not(.comic-mode) ::-webkit-scrollbar-thumb:hover {
 
 
 
+
 .hover-lift:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
+
 
 
 
@@ -350,6 +393,96 @@ html.dark:not(.comic-mode) ::-webkit-scrollbar-thumb:hover {
 
 
 
+
 body.comic-mode .badge-tech {
   @apply bg-comic-yellow text-black border-2 border-black;
+}
+
+
+
+
+/* ===========================
+   FIX RESPONSIVE - ALINEACIÓN PERFECTA
+   TODO CENTRADO Y PROLIJO
+   =========================== */
+
+/* Resetear padding de secciones principales */
+section {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Aplicar contenedor estandarizado CENTRADO a todas las secciones */
+#hero > div,
+#about > div,
+#projects > div,
+#skills > div,
+#services > div,
+#testimonials > div,
+#contact > div,
+#footer > div {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+/* Responsive - tablets */
+@media (min-width: 768px) {
+  #hero > div,
+  #about > div,
+  #projects > div,
+  #skills > div,
+  #services > div,
+  #testimonials > div,
+  #contact > div,
+  #footer > div {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+}
+
+/* Responsive - desktop */
+@media (min-width: 1024px) {
+  #hero > div,
+  #about > div,
+  #projects > div,
+  #skills > div,
+  #services > div,
+  #testimonials > div,
+  #contact > div,
+  #footer > div {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+  }
+}
+
+/* Pantallas muy grandes - padding extra */
+@media (min-width: 1536px) {
+  #hero > div,
+  #about > div,
+  #projects > div,
+  #skills > div,
+  #services > div,
+  #testimonials > div,
+  #contact > div,
+  #footer > div {
+    padding-left: 6rem !important;
+    padding-right: 6rem !important;
+  }
+}
+
+/* Asegurar que el contenido interno respete los márgenes */
+.container {
+  width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
 }
