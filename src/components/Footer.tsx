@@ -194,7 +194,7 @@ export default function Footer() {
           <p className={`text-center text-sm ${
             isComicMode ? 'text-black font-semibold' : 'text-gray-500'
           }`}>
-            Made with ❤️ by David Ramírez de la Parra
+            Made with by David Ramírez de la Parra - Universidad Cooperativa de Colombia
           </p>
         </div>
       </div>

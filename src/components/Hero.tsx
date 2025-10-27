@@ -1,6 +1,7 @@
 'use client';
 
 
+
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useComicMode } from "@/context/ComicModeContext";
@@ -8,9 +9,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { Send, Download, Eye } from "lucide-react";
 
 
+
 export default function Hero() {
   const { isComicMode } = useComicMode();
   const { content } = useLanguage();
+
 
 
   const heroClasses = isComicMode ? 'bg-white' : 'bg-light-gray';
@@ -34,7 +37,9 @@ export default function Hero() {
     : 'bg-dark-blue text-white shadow-lg hover:bg-dark-blue/90';
 
 
+
   const textBodyColor = isComicMode ? 'text-black font-bold' : 'text-gray-600';
+
 
 
   return (
@@ -45,6 +50,7 @@ export default function Hero() {
           <div className="comic-halftone w-full h-full"></div>
         </div>
       )}
+
 
 
       <div className="section-container">
@@ -68,6 +74,7 @@ export default function Hero() {
             />
           </div>
         </motion.div>
+
 
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           
@@ -103,6 +110,7 @@ export default function Hero() {
               {content.hero.cta_contact}
             </motion.a>
           </motion.div>
+
 
 
           {/* IMAGEN PROGRAMADOR - En mobile va primero (después del logo) */}
@@ -141,6 +149,7 @@ export default function Hero() {
         </div>
 
 
+
         <motion.div 
           className={`p-8 rounded-xl ${
             isComicMode 
@@ -154,8 +163,9 @@ export default function Hero() {
           <h2 className={`text-3xl font-bold text-center mb-8 ${
             isComicMode ? 'font-comic text-comic-red' : 'text-dark-blue'
           }`}>
-            Hero Section - Sección Principal
+            {content.hero.hero_section_title}
           </h2>
+
 
 
           <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -173,6 +183,7 @@ export default function Hero() {
               </div>
 
 
+
               <h3 className={`text-2xl font-bold mb-2 ${
                 isComicMode ? 'font-comic text-black' : 'text-dark-blue'
               }`}>
@@ -181,8 +192,9 @@ export default function Hero() {
               <p className={`text-center mb-4 ${
                 isComicMode ? 'text-black font-semibold' : 'text-gray-600'
               }`}>
-                Estudiante de Ingeniería de Software
+                {content.hero.profile_role}
               </p>
+
 
 
               <div className="flex gap-4">
@@ -199,6 +211,7 @@ export default function Hero() {
                   <Eye size={18} />
                   {content.hero.cv_view}
                 </motion.a>
+
 
 
                 <motion.a
@@ -218,27 +231,19 @@ export default function Hero() {
             </div>
 
 
+
             <div>
               <ul className={`space-y-3 mb-6 ${
                 isComicMode ? 'text-black font-semibold' : 'text-gray-700'
               }`}>
-                <li className="flex items-start gap-3">
-                  <span className={`mt-1 ${isComicMode ? 'text-comic-red' : 'text-dark-blue'}`}>✓</span>
-                  <span>Desarrollo de aplicaciones web modernas con React y Next.js</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className={`mt-1 ${isComicMode ? 'text-comic-red' : 'text-dark-blue'}`}>✓</span>
-                  <span>Creación de interfaces intuitivas usando Figma y Tailwind CSS</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className={`mt-1 ${isComicMode ? 'text-comic-red' : 'text-dark-blue'}`}>✓</span>
-                  <span>Manejo de bases de datos con MySQL y MongoDB</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className={`mt-1 ${isComicMode ? 'text-comic-red' : 'text-dark-blue'}`}>✓</span>
-                  <span>Enfoque en optimización, accesibilidad y experiencia de usuario</span>
-                </li>
+                {content.hero.skills_list.map((skill, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <span className={`mt-1 ${isComicMode ? 'text-comic-red' : 'text-dark-blue'}`}>✓</span>
+                    <span>{skill}</span>
+                  </li>
+                ))}
               </ul>
+
 
 
               <div className={`rounded-xl overflow-hidden ${
@@ -256,6 +261,7 @@ export default function Hero() {
               </div>
 
 
+
               <motion.a
                 href="#projects"
                 className={`inline-flex items-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all mt-6 w-full justify-center ${
@@ -265,7 +271,7 @@ export default function Hero() {
                 }`}
                 whileHover={{ scale: 1.02 }}
               >
-                Ver Proyectos
+                {content.hero.view_projects}
               </motion.a>
             </div>
           </div>
