@@ -10,12 +10,21 @@ export default function Hero() {
   const { isComicMode } = useComicMode();
   const { content } = useLanguage();
 
-  // Estilos condicionales
   const heroClasses = isComicMode ? 'bg-white' : 'bg-light-gray';
   
   const titleClasses = isComicMode 
-    ? 'section-title font-comic text-5xl lg:text-7xl text-black leading-tight' 
-    : 'text-5xl lg:text-6xl font-extrabold text-dark-blue leading-tight';
+    ? 'section-title font-comic text-5xl lg:text-7xl leading-tight' 
+    : 'text-5xl lg:text-6xl font-extrabold leading-tight hero-title-custom';
+  
+  const titleStyle = isComicMode ? {
+    textShadow: '3px 3px 0px #000, -3px -3px 0px #000, 3px -3px 0px #000, -3px 3px 0px #000, 4px 4px 0px #000',
+    WebkitTextStroke: '2px #000',
+    letterSpacing: '0.08em',
+    wordSpacing: '0.1em',
+    color: '#E2E2E2'
+  } : {
+    letterSpacing: '0.02em',
+  };
   
   const primaryButtonClasses = isComicMode 
     ? 'comic-button' 
@@ -26,40 +35,37 @@ export default function Hero() {
   return (
     <section id="inicio" className={`relative pt-32 pb-20 flex items-center min-h-screen ${heroClasses}`}>
       
-      {/* Efecto de fondo en modo cómico */}
       {isComicMode && (
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div className="comic-halftone w-full h-full"></div>
         </div>
       )}
 
-      <div className="container mx-auto px-6 md:px-16">
+      <div className="section-container">
         
-        {/* GRID: Texto + Imagen */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           
-          {/* LADO IZQUIERDO: Texto */}
           <motion.div
             initial={{ opacity: 0, x: -80 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
+            className="order-1"
           >
-            {/* TÍTULO */}
-            <h1 className={titleClasses}>
+            <h1 
+              className={titleClasses}
+              style={titleStyle}
+            >
               {content.hero.title}
             </h1>
             
-            {/* SUBTÍTULO */}
             <p className={`mt-6 text-2xl mb-3 font-semibold ${textBodyColor}`}>
               {content.hero.subtitle}
             </p>
             
-            {/* DESCRIPCIÓN */}
             <p className={`mt-4 text-base ${isComicMode ? 'text-black' : 'text-gray-600'}`}>
               {content.hero.description}
             </p>
             
-            {/* BOTÓN CONTACTO */}
             <motion.a 
               href="#contact"
               className={`inline-flex items-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all mt-8 ${primaryButtonClasses}`}
@@ -71,12 +77,11 @@ export default function Hero() {
             </motion.a>
           </motion.div>
 
-          {/* LADO DERECHO: Imagen del monitor/programador */}
           <motion.div
             initial={{ opacity: 0, x: 80 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex justify-center"
+            className="flex justify-center order-2"
           >
             <div className={`relative ${isComicMode ? 'animate-float' : ''}`}>
               <Image
@@ -92,7 +97,6 @@ export default function Hero() {
                 }`}
               />
               
-              {/* Efecto "POW!" en modo cómic */}
               {isComicMode && (
                 <motion.div
                   className="absolute -top-8 -right-8 bg-comic-red text-white font-black text-3xl px-4 py-2 rotate-12 border-4 border-black shadow-comic"
@@ -107,7 +111,6 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* SECCIÓN PRINCIPAL (Hero Section) - Con Foto y Spotify */}
         <motion.div 
           className={`p-8 rounded-xl ${
             isComicMode 
@@ -126,9 +129,7 @@ export default function Hero() {
 
           <div className="grid md:grid-cols-2 gap-8 items-center">
             
-            {/* IZQUIERDA: Foto y descripción */}
             <div className="flex flex-col items-center">
-              {/* Foto circular */}
               <div className={`relative w-64 h-64 rounded-full overflow-hidden mb-6 ${
                 isComicMode ? 'border-4 border-black shadow-comic' : 'border-4 border-dark-blue shadow-xl'
               }`}>
@@ -151,7 +152,6 @@ export default function Hero() {
                 Estudiante de Ingeniería de Software
               </p>
 
-              {/* Botones CV */}
               <div className="flex gap-4">
                 <motion.a
                   href="/cv/David-Ramirez-CV.pdf"
@@ -183,9 +183,7 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* DERECHA: Lista de puntos y Spotify */}
             <div>
-              {/* Lista de habilidades/puntos */}
               <ul className={`space-y-3 mb-6 ${
                 isComicMode ? 'text-black font-semibold' : 'text-gray-700'
               }`}>
@@ -207,7 +205,6 @@ export default function Hero() {
                 </li>
               </ul>
 
-              {/* Reproductor de Spotify embebido */}
               <div className={`rounded-xl overflow-hidden ${
                 isComicMode ? 'border-4 border-black shadow-comic' : 'shadow-lg'
               }`}>
@@ -222,7 +219,6 @@ export default function Hero() {
                 ></iframe>
               </div>
 
-              {/* Botón Ver Proyectos */}
               <motion.a
                 href="#projects"
                 className={`inline-flex items-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all mt-6 w-full justify-center ${
