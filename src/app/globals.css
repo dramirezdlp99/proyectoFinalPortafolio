@@ -5,6 +5,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
 
+
+
 /* ===========================
    TAILWIND BASE, COMPONENTS, UTILITIES
    =========================== */
@@ -12,8 +14,10 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 /* ===========================
-   VARIABLES GLOBALES
+   VARIABLES GLOBALES - MODO CLARO (Por Defecto)
    =========================== */
 :root {
   --bg-main: #FFFFFF;
@@ -22,6 +26,8 @@
   --text-secondary: #374151;
   --accent: #060E28;
 }
+
+
 
 /* ===========================
    CONFIGURACIÓN BASE
@@ -32,10 +38,14 @@
   box-sizing: border-box;
 }
 
+
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
 }
+
+
 
 body {
   font-family: 'Inter', sans-serif;
@@ -44,6 +54,8 @@ body {
   overflow-x: hidden;
   transition: background-color 0.3s ease;
 }
+
+
 
 /* ===========================
    MODO CÓMIC - ACTIVACIÓN GLOBAL
@@ -69,10 +81,14 @@ body.comic-mode {
   font-family: 'Bangers', 'Comic Neue', cursive !important;
 }
 
+
+
 body.comic-mode * {
   font-family: 'Bangers', 'Comic Neue', cursive !important;
   letter-spacing: 0.5px;
 }
+
+
 
 /* ===========================
    UTILIDADES PERSONALIZADAS
@@ -114,7 +130,23 @@ body.comic-mode * {
       radial-gradient(circle, black 1px, transparent 1px);
     background-size: 8px 8px;
   }
+
+  /* CLASE ESPECÍFICA PARA TÍTULO HERO */
+  .hero-title-custom {
+    color: #060E28 !important;
+  }
 }
+
+
+
+/* ===========================
+   FIX TÍTULO EN MODO CÓMICO
+   =========================== */
+body.comic-mode .hero-title-custom {
+  color: #E2E2E2 !important;
+}
+
+
 
 /* ===========================
    ANIMACIONES ESPECIALES
@@ -131,9 +163,13 @@ body.comic-mode * {
   }
 }
 
+
+
 .comic-pop {
   animation: comic-pop 0.3s ease-in-out;
 }
+
+
 
 @keyframes zoom-in {
   from {
@@ -146,9 +182,13 @@ body.comic-mode * {
   }
 }
 
+
+
 .zoom-in {
   animation: zoom-in 0.5s ease-out;
 }
+
+
 
 /* ===========================
    SCROLLBAR PERSONALIZADA
@@ -157,70 +197,117 @@ body.comic-mode * {
   width: 10px;
 }
 
+
+
 ::-webkit-scrollbar-track {
   background: #E2E2E2;
 }
+
+
 
 ::-webkit-scrollbar-thumb {
   background: #060E28;
   border-radius: 5px;
 }
 
+
+
 ::-webkit-scrollbar-thumb:hover {
   background: #0A1540;
 }
+
+
 
 body.comic-mode ::-webkit-scrollbar-thumb {
   background: #FF3B3B;
   border: 2px solid #000;
 }
 
+
+
 /* ===========================
-   MODO OSCURO (Automático según el sistema)
+   MODO OSCURO MANUAL (SOLO con clase .dark)
+   COLORES INVERTIDOS: Texto claro sobre fondo oscuro
    =========================== */
-@media (prefers-color-scheme: dark) {
-  body:not(.comic-mode) {
-    --bg-main: #0F172A;
-    --bg-section: #1E293B;
-    --text-primary: #F1F5F9;
-    --text-secondary: #CBD5E1;
-    background-color: var(--bg-main);
-    color: var(--text-primary);
-  }
-  
-  body:not(.comic-mode) .bg-light-gray {
-    background-color: var(--bg-section) !important;
-  }
-  
-  body:not(.comic-mode) .bg-white {
-    background-color: var(--bg-section) !important;
-  }
-  
-  body:not(.comic-mode) .text-dark-blue {
-    color: var(--text-primary) !important;
-  }
-  
-  body:not(.comic-mode) .text-gray-600,
-  body:not(.comic-mode) .text-gray-700 {
-    color: var(--text-secondary) !important;
-  }
-  
-  body:not(.comic-mode) .text-black {
-    color: var(--text-primary) !important;
-  }
-  
-  /* Tarjetas y secciones en modo oscuro */
-  body:not(.comic-mode) .shadow-2xl,
-  body:not(.comic-mode) .shadow-xl {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4) !important;
-  }
-  
-  /* Bordes en modo oscuro */
-  body:not(.comic-mode) .border-gray-200,
-  body:not(.comic-mode) .border-light-gray {
-    border-color: #374151 !important;
-  }
+html.dark body:not(.comic-mode) {
+  --bg-main: #060E28;
+  --bg-section: #0F1936;
+  --text-primary: #E2E2E2;
+  --text-secondary: #B0B0B0;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
 }
+
+html.dark:not(.comic-mode) .bg-light-gray {
+  background-color: #0F1936 !important;
+}
+
+html.dark:not(.comic-mode) .bg-white {
+  background-color: #060E28 !important;
+}
+
+html.dark:not(.comic-mode) .text-dark-blue {
+  color: #E2E2E2 !important;
+}
+
+html.dark:not(.comic-mode) .text-gray-600,
+html.dark:not(.comic-mode) .text-gray-700 {
+  color: #B0B0B0 !important;
+}
+
+html.dark:not(.comic-mode) .text-black {
+  color: #E2E2E2 !important;
+}
+
+html.dark:not(.comic-mode) .text-white {
+  color: #060E28 !important;
+}
+
+/* OVERRIDE PARA TÍTULO HERO EN MODO OSCURO */
+html.dark:not(.comic-mode) .hero-title-custom {
+  color: #E2E2E2 !important;
+}
+
+/* Tarjetas y secciones en modo oscuro */
+html.dark:not(.comic-mode) .shadow-2xl,
+html.dark:not(.comic-mode) .shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.8), 0 10px 10px -5px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Bordes en modo oscuro */
+html.dark:not(.comic-mode) .border-gray-200,
+html.dark:not(.comic-mode) .border-light-gray {
+  border-color: #2A3F5F !important;
+}
+
+html.dark:not(.comic-mode) .border-dark-blue {
+  border-color: #E2E2E2 !important;
+}
+
+/* Botones en modo oscuro - SIN AZUL CLARO */
+html.dark:not(.comic-mode) .bg-dark-blue {
+  background-color: #E2E2E2 !important;
+  color: #060E28 !important;
+}
+
+html.dark:not(.comic-mode) .bg-dark-blue:hover {
+  background-color: #C8C8C8 !important;
+}
+
+/* Scrollbar en modo oscuro */
+html.dark:not(.comic-mode) ::-webkit-scrollbar-track {
+  background: #0F1936;
+}
+
+html.dark:not(.comic-mode) ::-webkit-scrollbar-thumb {
+  background: #E2E2E2;
+}
+
+html.dark:not(.comic-mode) ::-webkit-scrollbar-thumb:hover {
+  background: #C8C8C8;
+}
+
+
 
 /* ===========================
    UTILIDADES RESPONSIVE
@@ -229,6 +316,15 @@ body.comic-mode ::-webkit-scrollbar-thumb {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
+
+
+/* Contenedor perfectamente centrado */
+.section-container {
+  @apply container mx-auto px-6 md:px-12 lg:px-16 max-w-6xl;
+}
+
+
+
 /* ===========================
    EFECTOS HOVER GLOBALES
    =========================== */
@@ -236,10 +332,14 @@ body.comic-mode ::-webkit-scrollbar-thumb {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+
+
 .hover-lift:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
+
+
 
 /* ===========================
    BADGES Y ETIQUETAS
@@ -247,6 +347,8 @@ body.comic-mode ::-webkit-scrollbar-thumb {
 .badge-tech {
   @apply inline-block bg-dark-blue text-white text-xs font-semibold px-3 py-1 rounded-full;
 }
+
+
 
 body.comic-mode .badge-tech {
   @apply bg-comic-yellow text-black border-2 border-black;
