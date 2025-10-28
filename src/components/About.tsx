@@ -38,12 +38,8 @@ export default function About() {
     ? 'bg-comic-red border-4 border-black text-white hover:bg-black hover:text-comic-red shadow-comic' 
     : 'bg-dark-blue text-white hover:bg-dark-blue/90';
 
-  // Imágenes de ejemplo (crea estas en /public/)
-  const images = [
-    '/about-interest-1.png',
-    '/about-interest-2.png', 
-    '/about-interest-3.png'
-  ];
+  // ✅ AHORA ES DINÁMICO - Toma las imágenes del JSON (máximo 10)
+  const aboutItems = content.about.items.slice(0, 10);
 
   return (
     <section id="about" className={`py-20 px-6 md:px-16 ${sectionBg} relative overflow-hidden`}>
@@ -89,11 +85,11 @@ export default function About() {
             
             <div className="overflow-hidden rounded-xl" ref={emblaRef}>
               <div className="flex">
-                {images.map((img, index) => (
+                {aboutItems.map((item, index) => (
                   <div key={index} className="flex-[0_0_100%] min-w-0">
                     <Image 
-                      src={img} 
-                      alt={`About ${index + 1}`} 
+                      src={item.image || '/placeholder.png'} 
+                      alt={item.title} 
                       width={600} 
                       height={400} 
                       className={`rounded-xl w-full h-auto object-cover transition-all duration-300 ${
@@ -127,7 +123,7 @@ export default function About() {
 
           {/* CONTENIDO (Derecha) */}
           <div className="w-full lg:w-1/2 pl-0 lg:pl-8">
-            {content.about.items.map((item, index) => (
+            {aboutItems.map((item, index) => (
               <motion.div 
                 key={index} 
                 className={`${index === selectedIndex ? 'block' : 'hidden'}`}
@@ -146,7 +142,7 @@ export default function About() {
             
             {/* Dots indicadores */}
             <div className="flex justify-center lg:justify-start mt-6 space-x-2">
-              {images.map((_, index) => (
+              {aboutItems.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => emblaApi && emblaApi.scrollTo(index)}
