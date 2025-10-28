@@ -43,7 +43,7 @@ export default function Hero() {
 
       <div className="section-container">
         
-        {/* LOGO MOBILE - Solo visible en mobile - ACTUALIZADO */}
+        {/* LOGO MOBILE - Solo visible en mobile */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -65,7 +65,7 @@ export default function Hero() {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           
-          {/* COLUMNA TEXTO - En mobile va después de la imagen */}
+          {/* COLUMNA TEXTO */}
           <motion.div
             initial={{ opacity: 0, x: -80 }}
             animate={{ opacity: 1, x: 0 }}
@@ -98,7 +98,7 @@ export default function Hero() {
             </motion.a>
           </motion.div>
 
-          {/* IMAGEN PROGRAMADOR - En mobile va primero (después del logo) */}
+          {/* IMAGEN PROGRAMADOR */}
           <motion.div
             initial={{ opacity: 0, x: 80 }}
             animate={{ opacity: 1, x: 0 }}
@@ -217,18 +217,19 @@ export default function Hero() {
                 ))}
               </ul>
 
-              {/* 🎵 TU PLAYLIST PERSONAL DE SPOTIFY - ARREGLADO */}
+              {/* 🎵 SPOTIFY PLAYER - TU PLAYLIST FERXXO (33 canciones) */}
               <div className={`rounded-xl overflow-hidden ${
                 isComicMode ? 'border-4 border-black shadow-comic' : 'shadow-lg'
               }`}>
                 <iframe
-                  src="https://open.spotify.com/playlist/3wB3Pyrzo5xzjQS6C71CqR?si=86fb2f613ac64db5"
+                  src="https://open.spotify.com/embed/playlist/3wB3Pyrzo5xzjQS6C71CqR?utm_source=generator"
                   width="100%"
                   height="152"
                   frameBorder="0"
+                  allowFullScreen
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
-                  title="Spotify Player - David's Playlist"
+                  title="Spotify Player - Ferxxo Playlist"
                 ></iframe>
               </div>
 
