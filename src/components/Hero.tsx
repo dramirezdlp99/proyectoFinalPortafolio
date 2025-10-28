@@ -1,20 +1,14 @@
 'use client';
 
-
-
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useComicMode } from "@/context/ComicModeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { Send, Download, Eye } from "lucide-react";
 
-
-
 export default function Hero() {
   const { isComicMode } = useComicMode();
   const { content } = useLanguage();
-
-
 
   const heroClasses = isComicMode ? 'bg-white' : 'bg-light-gray';
   
@@ -36,11 +30,7 @@ export default function Hero() {
     ? 'comic-button' 
     : 'bg-dark-blue text-white shadow-lg hover:bg-dark-blue/90';
 
-
-
   const textBodyColor = isComicMode ? 'text-black font-bold' : 'text-gray-600';
-
-
 
   return (
     <section id="inicio" className={`relative pt-32 pb-20 flex items-center min-h-screen ${heroClasses}`}>
@@ -51,11 +41,9 @@ export default function Hero() {
         </div>
       )}
 
-
-
       <div className="section-container">
         
-        {/* LOGO MOBILE - Solo visible en mobile */}
+        {/* LOGO MOBILE - Solo visible en mobile - ACTUALIZADO */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -66,7 +54,7 @@ export default function Hero() {
             isComicMode ? 'border-4 border-black shadow-comic' : 'border-4 border-dark-blue shadow-xl'
           }`}>
             <Image
-              src="/david-logo.png"
+              src={isComicMode ? "/david-logo-comic.png" : "/david-logo.png"}
               alt="DRDLF Logo"
               width={96}
               height={96}
@@ -74,7 +62,6 @@ export default function Hero() {
             />
           </div>
         </motion.div>
-
 
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           
@@ -111,8 +98,6 @@ export default function Hero() {
             </motion.a>
           </motion.div>
 
-
-
           {/* IMAGEN PROGRAMADOR - En mobile va primero (después del logo) */}
           <motion.div
             initial={{ opacity: 0, x: 80 }}
@@ -148,8 +133,6 @@ export default function Hero() {
           </motion.div>
         </div>
 
-
-
         <motion.div 
           className={`p-8 rounded-xl ${
             isComicMode 
@@ -166,8 +149,6 @@ export default function Hero() {
             {content.hero.hero_section_title}
           </h2>
 
-
-
           <div className="grid md:grid-cols-2 gap-8 items-center">
             
             <div className="flex flex-col items-center">
@@ -182,8 +163,6 @@ export default function Hero() {
                 />
               </div>
 
-
-
               <h3 className={`text-2xl font-bold mb-2 ${
                 isComicMode ? 'font-comic text-black' : 'text-dark-blue'
               }`}>
@@ -194,8 +173,6 @@ export default function Hero() {
               }`}>
                 {content.hero.profile_role}
               </p>
-
-
 
               <div className="flex gap-4">
                 <motion.a
@@ -211,8 +188,6 @@ export default function Hero() {
                   <Eye size={18} />
                   {content.hero.cv_view}
                 </motion.a>
-
-
 
                 <motion.a
                   href="/cv/David-Ramirez-CV.pdf"
@@ -230,8 +205,6 @@ export default function Hero() {
               </div>
             </div>
 
-
-
             <div>
               <ul className={`space-y-3 mb-6 ${
                 isComicMode ? 'text-black font-semibold' : 'text-gray-700'
@@ -243,8 +216,6 @@ export default function Hero() {
                   </li>
                 ))}
               </ul>
-
-
 
               <div className={`rounded-xl overflow-hidden ${
                 isComicMode ? 'border-4 border-black shadow-comic' : 'shadow-lg'
@@ -259,8 +230,6 @@ export default function Hero() {
                   title="Spotify Player"
                 ></iframe>
               </div>
-
-
 
               <motion.a
                 href="#projects"
