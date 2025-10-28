@@ -222,7 +222,7 @@ export default function Hero() {
                 isComicMode ? 'border-4 border-black shadow-comic' : 'shadow-lg'
               }`}>
                 <iframe
-                  src="https://open.spotify.com/embed/playlist/59Xvy29X9GtDWc0enWSIzh?utm_source=generator&theme=0"
+                  src="https://open.spotify.com/playlist/3wB3Pyrzo5xzjQS6C71CqR?si=86fb2f613ac64db5"
                   width="100%"
                   height="152"
                   frameBorder="0"
