@@ -32,15 +32,43 @@
     "items": [
       {
         "title": "Mi Pasión: Software y Diseño",
-        "content": "Desde siempre he estado fascinado por cómo la tecnología y el diseño se unen para crear soluciones. Mi objetivo es transformar ideas complejas en productos digitales simples y funcionales. Mi enfoque principal es el desarrollo web moderno, usando Next.js y Tailwind CSS para interfaces rápidas y estéticamente agradables."
+        "content": "Desde siempre he estado fascinado por cómo la tecnología y el diseño se unen para crear soluciones. Mi objetivo es transformar ideas complejas en productos digitales simples y funcionales. Mi enfoque principal es el desarrollo web moderno, usando Next.js y Tailwind CSS para interfaces rápidas y estéticamente agradables.",
+        "image": "/about-passion.png"
       },
       {
         "title": "Lo que Soy: Ingeniero en Formación",
-        "content": "Actualmente, estoy en proceso de convertirme en Ingeniero de Software, lo que me ha proporcionado una base sólida en estructuras de datos, algoritmia y desarrollo de back-end. Combino esta lógica rigurosa con mi ojo para el diseño (UI/UX) para ofrecer soluciones completas y de alta calidad."
+        "content": "Actualmente, estoy en proceso de convertirme en Ingeniero de Software, lo que me ha proporcionado una base sólida en estructuras de datos, algoritmia y desarrollo de back-end. Combino esta lógica rigurosa con mi ojo para el diseño (UI/UX) para ofrecer soluciones completas y de alta calidad.",
+        "image": "/about-engineer.png"
       },
       {
         "title": "Mis Aspiraciones Profesionales",
-        "content": "Busco trabajar en proyectos que supongan un desafío, donde pueda aplicar mis conocimientos en IA, desarrollo full-stack y diseño. Me motiva especialmente la innovación y la creación de productos que tengan un impacto positivo en los usuarios y en el entorno digital."
+        "content": "Busco trabajar en proyectos que supongan un desafío, donde pueda aplicar mis conocimientos en IA, desarrollo full-stack y diseño. Me motiva especialmente la innovación y la creación de productos que tengan un impacto positivo en los usuarios y en el entorno digital.",
+        "image": "/about-aspirations.png"
+      },
+      {
+        "title": "Más Allá del Código: Mis Pasiones",
+        "content": "Fuera del desarrollo, soy un apasionado del entretenimiento en todas sus formas. Desde videojuegos épicos como God of War y Marvel's Spider-Man, hasta el cine —donde 'Eternal Sunshine of the Spotless Mind' con Jim Carrey es mi favorita—. La música también es fundamental: escucho de todo, pero mi corazón late con el rock/metal de Avenged Sevenfold y el rap de Eminem. En el deporte, sigo al Real Madrid, admiro a CR7, y disfruto del básquet con Luka Doncic y el tenis con Sinner. Estas pasiones me mantienen creativo y balanceado.",
+        "image": "/about-interest-1.png"
+      },
+      {
+        "title": "Experiencia Real: De la Construcción al Código",
+        "content": "Mi trayectoria profesional comenzó lejos de las pantallas: trabajé 3 años en una empresa familiar de construcción, primero como almacenista y luego como auxiliar administrativo. Allí manejé nóminas, causación contable en Compuconta y creé mi primera página web en Wix. También trabajé en emprendimientos familiares como domiciliario. Esta experiencia me enseñó disciplina, gestión y la importancia de resolver problemas reales —habilidades que aplico hoy en cada proyecto de software que desarrollo.",
+        "image": "/about-interest-2.png"
+      },
+      {
+        "title": "Mi Filosofía: Crear con Propósito e Impacto",
+        "content": "Lo que me motiva es el poder ilimitado de materializar ideas a través del código. Programar no es solo una habilidad, es una herramienta para transformar el mundo. Mi objetivo es crear soluciones que no solo funcionen perfectamente, sino que generen un impacto positivo en las personas. Busco ser reconocido no solo por mi excelencia técnica, sino por mi integridad y valores. Mi lema: 'Código limpio, mente clara, impacto real.' Cada línea que escribo es un paso hacia ese futuro.",
+        "image": "/about-interest-3.png"
+      },
+      {
+        "title": "Mi Trayectoria: Del Aula al Backend",
+        "content": "Actualmente curso mi 5to semestre de Ingeniería de Software en la Universidad Cooperativa de Colombia, Campus Pasto. Mi camino no fue lineal: en 2019 inicié Arquitectura, pero pronto descubrí que mi verdadera pasión estaba en el código, no en los planos. Desde niño fui hábil con los computadores, y hoy combino el aprendizaje académico con práctica constante, videos tutoriales y el apoyo de herramientas de IA. Mi stack favorito incluye Java, Spring Boot, Next.js, Tailwind CSS y MongoDB. Prefiero Windows por ahora, pero sueño con trabajar en Mac para potenciar aún más mi flujo de trabajo.",
+        "image": "/about-interest-4.png"
+      },
+      {
+        "title": "Raíces y Motivación: Mi Círculo Cercano",
+        "content": "Nacido el 4 de agosto de 1999 en Pasto, comparto mi vida con quienes más amo: mi mamá Liliana, mi hermano Alejandro, mi tía Charo, mi abuelo Francisco y mi novia Sofía, mi compañera de casi 5 años. Estudié en la Escuela Normal Superior y el Instituto Técnico COLSUP, donde forjé amistades que aún conservo. Mi familia unida y mi entorno cercano son mi combustible diario. Cada proyecto que desarrollo, cada línea de código que escribo, lleva una parte de ellos. Este portafolio no es solo mío: es el reflejo de su apoyo incondicional.",
+        "image": "/about-interest-5.png"
       }
     ]
   },
@@ -51,19 +79,22 @@
         "title": "DigiHealth – Sistema de Gestión Clínica",
         "description": "Plataforma completa para la gestión hospitalaria, abarcando desde el registro biométrico de pacientes hasta el manejo de inventario médico y citas. Diseño enfocado en UI/UX profesional.",
         "tech": ["React", "Node.js", "MongoDB", "Tailwind CSS", "Figma"],
-        "link": "#"
+        "link": "#",
+        "image": "/project-digihealth.png"
       },
       {
         "title": "Landing Page de Turismo Interactivo",
         "description": "Diseño responsive y animado de una landing page para una agencia de viajes, utilizando animaciones fluidas y un diseño moderno. Excelente rendimiento gracias a Next.js.",
         "tech": ["Next.js", "Tailwind CSS", "Framer Motion"],
-        "link": "#"
+        "link": "#",
+        "image": "/project-turismo.png"
       },
       {
         "title": "Shooter 3D - Juego en Unity",
         "description": "Desarrollo de un prototipo de videojuego First-Person Shooter (FPS) en 3D. Aplicación de lógica de juego, física y scripting avanzado.",
         "tech": ["Unity", "C#", "Blender"],
-        "link": "#"
+        "link": "#",
+        "image": "/project-shooter.png"
       }
     ],
     "cta": "Ver Proyecto"

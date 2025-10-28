@@ -32,15 +32,43 @@
     "items": [
       {
         "title": "My Passion: Software and Design",
-        "content": "I've always been fascinated by how technology and design come together to create solutions. My goal is to transform complex ideas into simple and functional digital products. My main focus is modern web development, using Next.js and Tailwind CSS for fast and aesthetically pleasing interfaces."
+        "content": "I've always been fascinated by how technology and design come together to create solutions. My goal is to transform complex ideas into simple and functional digital products. My main focus is modern web development, using Next.js and Tailwind CSS for fast and aesthetically pleasing interfaces.",
+        "image": "/about-passion.png"
       },
       {
         "title": "What I Am: Engineer in Training",
-        "content": "Currently, I'm in the process of becoming a Software Engineer, which has provided me with a solid foundation in data structures, algorithms, and back-end development. I combine this rigorous logic with my eye for design (UI/UX) to deliver complete, high-quality solutions."
+        "content": "Currently, I'm in the process of becoming a Software Engineer, which has provided me with a solid foundation in data structures, algorithms, and back-end development. I combine this rigorous logic with my eye for design (UI/UX) to deliver complete, high-quality solutions.",
+        "image": "/about-engineer.png"
       },
       {
         "title": "My Professional Aspirations",
-        "content": "I seek to work on challenging projects where I can apply my knowledge in AI, full-stack development, and design. I'm especially motivated by innovation and creating products that have a positive impact on users and the digital environment."
+        "content": "I seek to work on challenging projects where I can apply my knowledge in AI, full-stack development, and design. I'm especially motivated by innovation and creating products that have a positive impact on users and the digital environment.",
+        "image": "/about-aspirations.png"
+      },
+      {
+        "title": "Beyond the Code: My Passions",
+        "content": "Outside of development, I'm passionate about entertainment in all its forms. From epic video games like God of War and Marvel's Spider-Man, to cinema —where 'Eternal Sunshine of the Spotless Mind' with Jim Carrey is my favorite—. Music is also fundamental: I listen to everything, but my heart beats with rock/metal from Avenged Sevenfold and rap from Eminem. In sports, I follow Real Madrid, admire CR7, and enjoy basketball with Luka Doncic and tennis with Sinner. These passions keep me creative and balanced.",
+        "image": "/about-interest-1.png"
+      },
+      {
+        "title": "Real Experience: From Construction to Code",
+        "content": "My professional journey began far from screens: I worked for 3 years in a family construction company, first as a warehouse clerk and then as an administrative assistant. There I managed payrolls, accounting entries in Compuconta, and created my first website in Wix. I also worked in family entrepreneurships as a delivery person. This experience taught me discipline, management, and the importance of solving real problems —skills I apply today in every software project I develop.",
+        "image": "/about-interest-2.png"
+      },
+      {
+        "title": "My Philosophy: Creating with Purpose and Impact",
+        "content": "What motivates me is the unlimited power to materialize ideas through code. Programming is not just a skill, it's a tool to transform the world. My goal is to create solutions that not only work perfectly, but also generate a positive impact on people. I seek to be recognized not only for my technical excellence, but for my integrity and values. My motto: 'Clean code, clear mind, real impact.' Every line I write is a step toward that future.",
+        "image": "/about-interest-3.png"
+      },
+      {
+        "title": "My Journey: From Classroom to Backend",
+        "content": "I'm currently in my 5th semester of Software Engineering at Universidad Cooperativa de Colombia, Pasto Campus. My path wasn't linear: in 2019 I started Architecture, but soon discovered that my true passion was in code, not blueprints. Since childhood I was skilled with computers, and today I combine academic learning with constant practice, video tutorials, and AI tool support. My favorite stack includes Java, Spring Boot, Next.js, Tailwind CSS, and MongoDB. I prefer Windows for now, but dream of working on Mac to further enhance my workflow.",
+        "image": "/about-interest-4.png"
+      },
+      {
+        "title": "Roots and Motivation: My Inner Circle",
+        "content": "Born on August 4, 1999 in Pasto, I share my life with those I love most: my mom Liliana, my brother Alejandro, my aunt Charo, my grandfather Francisco, and my girlfriend Sofía, my partner of almost 5 years. I studied at Escuela Normal Superior and Instituto Técnico COLSUP, where I forged friendships I still maintain. My united family and close environment are my daily fuel. Every project I develop, every line of code I write, carries a part of them. This portfolio isn't just mine: it's a reflection of their unconditional support.",
+        "image": "/about-interest-5.png"
       }
     ]
   },
@@ -51,19 +79,22 @@
         "title": "DigiHealth – Clinical Management System",
         "description": "Complete platform for hospital management, covering everything from biometric patient registration to medical inventory and appointment management. Design focused on professional UI/UX.",
         "tech": ["React", "Node.js", "MongoDB", "Tailwind CSS", "Figma"],
-        "link": "#"
+        "link": "#",
+        "image": "/project-digihealth.png"
       },
       {
         "title": "Interactive Tourism Landing Page",
         "description": "Responsive and animated landing page design for a travel agency, using fluid animations and modern design. Excellent performance thanks to Next.js.",
         "tech": ["Next.js", "Tailwind CSS", "Framer Motion"],
-        "link": "#"
+        "link": "#",
+        "image": "/project-turismo.png"
       },
       {
         "title": "3D Shooter - Unity Game",
         "description": "Development of a 3D First-Person Shooter (FPS) video game prototype. Application of game logic, physics, and advanced scripting.",
         "tech": ["Unity", "C#", "Blender"],
-        "link": "#"
+        "link": "#",
+        "image": "/project-shooter.png"
       }
     ],
     "cta": "View Project"
