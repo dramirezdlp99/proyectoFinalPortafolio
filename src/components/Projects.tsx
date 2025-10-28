@@ -42,12 +42,8 @@ export default function Projects() {
     ? 'bg-comic-red border-4 border-black text-white hover:bg-black hover:text-comic-red shadow-comic' 
     : 'bg-dark-blue text-white hover:bg-dark-blue/90';
 
-  // Imágenes de proyectos (crea estas en /public/)
-  const projectImages = [
-    '/project-digihealth.png',
-    '/project-turismo.png',
-    '/project-shooter.png'
-  ];
+  // ✅ AHORA ES DINÁMICO - Toma los proyectos del JSON (máximo 10)
+  const projectItems = content.projects.items.slice(0, 10);
 
   return (
     <section id="projects" className={`py-20 px-4 md:px-8 ${sectionBg} relative overflow-hidden`}>
@@ -85,7 +81,7 @@ export default function Projects() {
           {/* Contenedor de Embla */}
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
-              {content.projects.items.map((project, index) => (
+              {projectItems.map((project, index) => (
                 <div key={index} className="flex-[0_0_100%] min-w-0 px-2">
                   <motion.div 
                     className={`flex flex-col lg:flex-row items-center p-8 rounded-xl transition-all duration-300 ${cardClasses}`}
@@ -98,7 +94,7 @@ export default function Projects() {
                     {/* IMAGEN */}
                     <div className="w-full lg:w-1/2 h-64 lg:h-80 relative mb-6 lg:mb-0 lg:mr-8 flex-shrink-0">
                       <Image
-                        src={projectImages[index]}
+                        src={project.image || '/placeholder.png'}
                         alt={project.title}
                         fill
                         className={`rounded-lg object-cover transition-all duration-300 ${
@@ -200,7 +196,7 @@ export default function Projects() {
           
           {/* Dots indicadores */}
           <div className="flex justify-center mt-8 space-x-2">
-            {content.projects.items.map((_, index) => (
+            {projectItems.map((_, index) => (
               <button
                 key={index}
                 onClick={() => emblaApi && emblaApi.scrollTo(index)}
