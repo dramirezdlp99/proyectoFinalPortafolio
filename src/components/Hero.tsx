@@ -217,17 +217,18 @@ export default function Hero() {
                 ))}
               </ul>
 
+              {/* 🎵 TU PLAYLIST PERSONAL DE SPOTIFY - ARREGLADO */}
               <div className={`rounded-xl overflow-hidden ${
                 isComicMode ? 'border-4 border-black shadow-comic' : 'shadow-lg'
               }`}>
                 <iframe
-                  src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M"
+                  src="https://open.spotify.com/embed/playlist/59Xvy29X9GtDWc0enWSIzh?utm_source=generator&theme=0"
                   width="100%"
                   height="152"
                   frameBorder="0"
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
-                  title="Spotify Player"
+                  title="Spotify Player - David's Playlist"
                 ></iframe>
               </div>
 
