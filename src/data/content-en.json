@@ -16,7 +16,16 @@
     "cta_contact": "Contact",
     "cta_spotify": "Spotify",
     "cv_view": "View CV",
-    "cv_download": "Download CV"
+    "cv_download": "Download CV",
+    "profile_role": "Software Engineering Student",
+    "hero_section_title": "Hero Section - Main Section",
+    "view_projects": "View Projects",
+    "skills_list": [
+      "Development of modern web applications with React and Next.js",
+      "Creating intuitive interfaces using Figma and Tailwind CSS",
+      "Database management with MySQL and MongoDB",
+      "Focus on optimization, accessibility, and user experience"
+    ]
   },
   "about": {
     "title": "About Me",
