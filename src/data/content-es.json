@@ -1,166 +1,166 @@
 {
-  "lang": "en",
+  "lang": "es",
   "nav": {
-    "home": "Home",
-    "about": "About",
-    "projects": "Projects",
-    "skills": "Skills",
-    "services": "Services",
-    "testimonials": "Testimonials",
-    "contact": "Contact"
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "services": "Servicios",
+    "testimonials": "Testimonios",
+    "contact": "Contacto"
   },
   "hero": {
-    "title": "Building the future with design and software",
-    "subtitle": "Creating efficient digital solutions.",
-    "description": "I transform ideas into useful and attractive digital experiences. Through design and programming, I seek to create solutions that simplify people's lives.",
-    "cta_contact": "Contact",
+    "title": "Construyendo el futuro con diseño y software",
+    "subtitle": "Creando soluciones digitales eficientes.",
+    "description": "Transformo ideas en experiencias digitales útiles y atractivas. A través del diseño y la programación, busco crear soluciones que simplifiquen la vida de las personas.",
+    "cta_contact": "Contacto",
     "cta_spotify": "Spotify",
-    "cv_view": "View CV",
-    "cv_download": "Download CV",
-    "profile_role": "Software Engineering Student",
-    "hero_section_title": "Hero Section - Main Section",
-    "view_projects": "View Projects",
+    "cv_view": "Ver CV",
+    "cv_download": "Descargar CV",
+    "profile_role": "Estudiante de Ingeniería de Software",
+    "hero_section_title": "Hero Section - Sección Principal",
+    "view_projects": "Ver Proyectos",
     "skills_list": [
-      "Development of modern web applications with React and Next.js",
-      "Creating intuitive interfaces using Figma and Tailwind CSS",
-      "Database management with MySQL and MongoDB",
-      "Focus on optimization, accessibility, and user experience"
+      "Desarrollo de aplicaciones web modernas con React y Next.js",
+      "Creación de interfaces intuitivas usando Figma y Tailwind CSS",
+      "Manejo de bases de datos con MySQL y MongoDB",
+      "Enfoque en optimización, accesibilidad y experiencia de usuario"
     ]
   },
   "about": {
-    "title": "About Me",
+    "title": "Sobre Mí",
     "items": [
       {
-        "title": "My Passion: Software and Design",
-        "content": "I've always been fascinated by how technology and design come together to create solutions. My goal is to transform complex ideas into simple and functional digital products. My main focus is modern web development, using Next.js and Tailwind CSS for fast and aesthetically pleasing interfaces."
+        "title": "Mi Pasión: Software y Diseño",
+        "content": "Desde siempre he estado fascinado por cómo la tecnología y el diseño se unen para crear soluciones. Mi objetivo es transformar ideas complejas en productos digitales simples y funcionales. Mi enfoque principal es el desarrollo web moderno, usando Next.js y Tailwind CSS para interfaces rápidas y estéticamente agradables."
       },
       {
-        "title": "What I Am: Engineer in Training",
-        "content": "Currently, I'm in the process of becoming a Software Engineer, which has provided me with a solid foundation in data structures, algorithms, and back-end development. I combine this rigorous logic with my eye for design (UI/UX) to deliver complete, high-quality solutions."
+        "title": "Lo que Soy: Ingeniero en Formación",
+        "content": "Actualmente, estoy en proceso de convertirme en Ingeniero de Software, lo que me ha proporcionado una base sólida en estructuras de datos, algoritmia y desarrollo de back-end. Combino esta lógica rigurosa con mi ojo para el diseño (UI/UX) para ofrecer soluciones completas y de alta calidad."
       },
       {
-        "title": "My Professional Aspirations",
-        "content": "I seek to work on challenging projects where I can apply my knowledge in AI, full-stack development, and design. I'm especially motivated by innovation and creating products that have a positive impact on users and the digital environment."
+        "title": "Mis Aspiraciones Profesionales",
+        "content": "Busco trabajar en proyectos que supongan un desafío, donde pueda aplicar mis conocimientos en IA, desarrollo full-stack y diseño. Me motiva especialmente la innovación y la creación de productos que tengan un impacto positivo en los usuarios y en el entorno digital."
       }
     ]
   },
   "projects": {
-    "title": "My Projects",
+    "title": "Mis Proyectos",
     "items": [
       {
-        "title": "DigiHealth – Clinical Management System",
-        "description": "Complete platform for hospital management, covering everything from biometric patient registration to medical inventory and appointment management. Design focused on professional UI/UX.",
+        "title": "DigiHealth – Sistema de Gestión Clínica",
+        "description": "Plataforma completa para la gestión hospitalaria, abarcando desde el registro biométrico de pacientes hasta el manejo de inventario médico y citas. Diseño enfocado en UI/UX profesional.",
         "tech": ["React", "Node.js", "MongoDB", "Tailwind CSS", "Figma"],
         "link": "#"
       },
       {
-        "title": "Interactive Tourism Landing Page",
-        "description": "Responsive and animated landing page design for a travel agency, using fluid animations and modern design. Excellent performance thanks to Next.js.",
+        "title": "Landing Page de Turismo Interactivo",
+        "description": "Diseño responsive y animado de una landing page para una agencia de viajes, utilizando animaciones fluidas y un diseño moderno. Excelente rendimiento gracias a Next.js.",
         "tech": ["Next.js", "Tailwind CSS", "Framer Motion"],
         "link": "#"
       },
       {
-        "title": "3D Shooter - Unity Game",
-        "description": "Development of a 3D First-Person Shooter (FPS) video game prototype. Application of game logic, physics, and advanced scripting.",
+        "title": "Shooter 3D - Juego en Unity",
+        "description": "Desarrollo de un prototipo de videojuego First-Person Shooter (FPS) en 3D. Aplicación de lógica de juego, física y scripting avanzado.",
         "tech": ["Unity", "C#", "Blender"],
         "link": "#"
       }
     ],
-    "cta": "View Project"
+    "cta": "Ver Proyecto"
   },
   "skills": {
-    "title": "Skill Tree",
+    "title": "Árbol de Habilidades",
     "items": {
-      "mongodb": { "label": "MongoDB", "info": "NoSQL database management for scalability." },
-      "frontend": { "label": "Frontend Dev", "info": "Building modern and responsive user interfaces." },
-      "backend": { "label": "Backend Dev", "info": "Developing business logic and robust APIs." },
-      "java": { "label": "Java", "info": "Mastery in object-oriented programming (OOP) and enterprise systems." },
-      "typescript": { "label": "TypeScript", "info": "Writing safer and more scalable JavaScript code." },
-      "html": { "label": "HTML5/CSS3", "info": "Fundamental basis of web development and structuring." },
-      "tailwind": { "label": "Tailwind CSS", "info": "Rapid UI/UX development with utility-first approach." },
-      "nextjs": { "label": "Next.js", "info": "Full-stack React applications with optimized rendering (SSR/SSG)." },
-      "python": { "label": "Python", "info": "Automation, scripting, and data analysis." },
-      "github": { "label": "GitHub", "info": "Version control and team collaboration." },
-      "vscode": { "label": "VS Code", "info": "Agile and productive development environment." },
-      "react": { "label": "React", "info": "Library for interactive user interfaces." }
+      "mongodb": { "label": "MongoDB", "info": "Manejo de bases de datos NoSQL para escalabilidad." },
+      "frontend": { "label": "Frontend Dev", "info": "Creación de interfaces de usuario modernas y responsivas." },
+      "backend": { "label": "Backend Dev", "info": "Desarrollo de lógica de negocio y APIs robustas." },
+      "java": { "label": "Java", "info": "Dominio en programación orientada a objetos (POO) y sistemas empresariales." },
+      "typescript": { "label": "TypeScript", "info": "Escribo código JavaScript más seguro y escalable." },
+      "html": { "label": "HTML5/CSS3", "info": "Base fundamental del desarrollo web y estructuración." },
+      "tailwind": { "label": "Tailwind CSS", "info": "Desarrollo rápido de UI/UX con enfoque utility-first." },
+      "nextjs": { "label": "Next.js", "info": "Aplicaciones React full-stack con rendering optimizado (SSR/SSG)." },
+      "python": { "label": "Python", "info": "Automatización, scripting y análisis de datos." },
+      "github": { "label": "GitHub", "info": "Control de versiones y colaboración en equipo." },
+      "vscode": { "label": "VS Code", "info": "Entorno de desarrollo ágil y productivo." },
+      "react": { "label": "React", "info": "Biblioteca para interfaces de usuario interactivas." }
     }
   },
   "services": {
-    "title": "Services",
+    "title": "Servicios",
     "items": [
       {
-        "title": "Custom Web Development",
-        "description": "I build modern, fast, and fully responsive websites using the latest technologies like Next.js, React, and Tailwind CSS.",
+        "title": "Desarrollo Web Personalizado",
+        "description": "Construyo sitios web modernos, rápidos y totalmente responsivos usando las últimas tecnologías como Next.js, React y Tailwind CSS.",
         "icon": "code"
       },
       {
-        "title": "Professional UX/UI Design",
-        "description": "I create attractive and user-friendly interfaces, prototyped in Figma. Focused on user experience and conversion.",
+        "title": "Diseño UX/UI Profesional",
+        "description": "Creo interfaces atractivas y fáciles de usar, prototipadas en Figma. Enfocado en la experiencia del usuario y conversión.",
         "icon": "palette"
       },
       {
-        "title": "Interactive Application Development",
-        "description": "From complex web applications to basic video games in Unity. Experience in business logic and gamification.",
+        "title": "Desarrollo de Aplicaciones Interactivas",
+        "description": "Desde aplicaciones web complejas hasta videojuegos básicos en Unity. Experiencia en lógica de negocio y gamificación.",
         "icon": "gamepad"
       }
     ],
-    "cta": "More details"
+    "cta": "Más detalles"
   },
   "testimonials": {
-    "title": "Testimonials",
+    "title": "Testimonios",
     "items": [
       {
         "name": "Jacqueline Wright",
-        "role": "Client",
+        "role": "Cliente",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         "image": "/testimonial-1.jpg"
       },
       {
         "name": "Carlos Pérez",
-        "role": "Collaborator",
+        "role": "Colaborador",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         "image": "/testimonial-2.jpg"
       }
     ]
   },
   "contact": {
-    "title": "Contact",
-    "subtitle": "Do you have an idea, project, or collaboration in mind? Let's talk and create something amazing!",
+    "title": "Contacto",
+    "subtitle": "¿Tienes una idea, proyecto o colaboración en mente? ¡Hablemos y creemos algo increíble!",
     "form": {
-      "name": "Name",
-      "lastname": "Last name",
-      "email": "Email",
-      "message": "Message",
-      "send": "Send",
-      "call": "Call me",
-      "sending": "Sending...",
-      "success": "Message sent! I'll respond soon.",
-      "error": "Error sending. Please try again."
+      "name": "Nombre",
+      "lastname": "Apellido",
+      "email": "Correo electrónico",
+      "message": "Mensaje",
+      "send": "Enviar",
+      "call": "Llámame",
+      "sending": "Enviando...",
+      "success": "¡Mensaje enviado! Te responderé pronto.",
+      "error": "Error al enviar. Intenta nuevamente."
     },
     "social": {
       "github": "GitHub",
       "linkedin": "LinkedIn",
-      "email": "Email"
+      "email": "Correo"
     }
   },
   "footer": {
-    "cta_title": "Need more information?",
-    "cta_subtitle": "Write me and let's talk about your project.",
-    "cta_button": "Contact me",
-    "copyright": "© 2025 David Ramírez de la Parra. All rights reserved.",
-    "nav_title": "Navigate to:",
-    "motto_title": "My Approach:",
-    "motto_text": "Building digital experiences with creativity and technology.",
-    "contact_title": "Get in touch"
+    "cta_title": "¿Necesitas más información?",
+    "cta_subtitle": "Escríbeme y hablemos de tu proyecto.",
+    "cta_button": "Contáctame",
+    "copyright": "© 2025 David Ramírez de la Parra. Todos los derechos reservados.",
+    "nav_title": "Dirígete a:",
+    "motto_title": "Mi Enfoque:",
+    "motto_text": "Construyendo experiencias digitales con creatividad y tecnología.",
+    "contact_title": "Contáctate conmigo"
   },
   "chatbot": {
     "title": "David AI",
-    "placeholder": "Type your message...",
-    "placeholder_comic": "Type here, HERO!",
-    "send": "Send",
-    "typing": "... Typing"
+    "placeholder": "Escribe tu mensaje...",
+    "placeholder_comic": "¡Escribe aquí, HÉROE!",
+    "send": "Enviar",
+    "typing": "... Escribiendo"
   },
   "comicMode": {
-    "tooltip": "Comic Mode"
+    "tooltip": "Modo Cómic"
   }
 }
