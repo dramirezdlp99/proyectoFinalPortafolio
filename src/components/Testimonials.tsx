@@ -39,6 +39,9 @@ export default function Testimonials() {
     ? 'bg-comic-red border-4 border-black text-white hover:bg-black hover:text-comic-red shadow-comic'
     : 'bg-dark-blue text-white hover:bg-dark-blue/90';
 
+  // ✅ AHORA ES DINÁMICO - Toma los testimonios del JSON (máximo 10)
+  const testimonialItems = content.testimonials.items.slice(0, 10);
+
   return (
     <section id="testimonials" className={`py-20 px-6 md:px-16 lg:pl-80 ${sectionBg} relative overflow-hidden`}>
       
@@ -65,7 +68,7 @@ export default function Testimonials() {
           {/* Contenedor de Embla */}
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
-              {content.testimonials.items.map((testimonial, index) => (
+              {testimonialItems.map((testimonial, index) => (
                 <div key={index} className="flex-[0_0_100%] min-w-0 px-4">
                   <motion.div
                     className={`p-8 rounded-xl transition-all duration-300 ${cardClasses}`}
@@ -148,7 +151,7 @@ export default function Testimonials() {
 
           {/* Dots indicadores */}
           <div className="flex justify-center mt-8 space-x-2">
-            {content.testimonials.items.map((_, index) => (
+            {testimonialItems.map((_, index) => (
               <button
                 key={index}
                 onClick={() => emblaApi && emblaApi.scrollTo(index)}
