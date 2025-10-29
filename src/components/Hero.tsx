@@ -217,19 +217,18 @@ export default function Hero() {
                 ))}
               </ul>
 
-              {/* 🎵 SPOTIFY PLAYER - TU PLAYLIST FERXXO (33 canciones) */}
+              {/* 🎵 SPOTIFY PLAYER OPTIMIZADO - 49 CANCIONES */}
               <div className={`rounded-xl overflow-hidden ${
                 isComicMode ? 'border-4 border-black shadow-comic' : 'shadow-lg'
               }`}>
                 <iframe
-                  src="https://open.spotify.com/embed/playlist/3wB3Pyrzo5xzjQS6C71CqR?utm_source=generator"
+                  src="https://open.spotify.com/embed/playlist/5KooJP4KsAK2tUPmC4TLYj?utm_source=generator&theme=0"
                   width="100%"
                   height="152"
-                  frameBorder="0"
-                  allowFullScreen
+                  style={{ border: 0 }}
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  title="Spotify Player - Ferxxo Playlist"
+                  loading="eager"
+                  title="Spotify Player"
                 ></iframe>
               </div>
 
@@ -251,5 +250,3 @@ export default function Hero() {
     </section>
   );
 }
-
-// Prueba Vercel
