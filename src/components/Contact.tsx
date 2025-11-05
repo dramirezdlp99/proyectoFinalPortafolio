@@ -194,7 +194,7 @@ export default function Contact() {
                 </motion.button>
 
                 <motion.a
-                  href="tel:+573001234567"
+                  href="tel:+573153769551"
                   className={`px-8 py-3 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 ${secondaryButtonClasses}`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -228,7 +228,7 @@ export default function Contact() {
               </p>
               <div className="flex justify-center gap-4">
                 <motion.a
-                  href="https://github.com/tu-usuario"
+                  href="https://github.com/dramirezdlp99"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`w-12 h-12 flex items-center justify-center rounded-full transition-all ${socialButtonClasses}`}
@@ -238,7 +238,7 @@ export default function Contact() {
                   <Github size={24} />
                 </motion.a>
                 <motion.a
-                  href="https://linkedin.com/in/tu-usuario"
+                  href="https://www.linkedin.com/in/davidramirezdelaparra"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`w-12 h-12 flex items-center justify-center rounded-full transition-all ${socialButtonClasses}`}
@@ -248,7 +248,7 @@ export default function Contact() {
                   <Linkedin size={24} />
                 </motion.a>
                 <motion.a
-                  href="mailto:tu.email@example.com"
+                  href="mailto:davidramirezdelaparra99@gmail.com"
                   className={`w-12 h-12 flex items-center justify-center rounded-full transition-all ${socialButtonClasses}`}
                   whileHover={{ scale: 1.1 }}
                   aria-label="Email"
