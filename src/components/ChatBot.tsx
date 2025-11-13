@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
-import { MessageSquare, X, Send } from 'lucide-react';
+import { Bot, X, Send } from 'lucide-react';
 import { useComicMode } from '@/context/ComicModeContext';
 import { useLanguage } from '@/context/LanguageContext';
 import Image from 'next/image';
@@ -15,21 +15,19 @@ interface Message {
 
 export default function ChatBot() {
   const { isComicMode } = useComicMode();
-  const { content, language } = useLanguage(); // ⬅️ IMPORTANTE: Obtener language
+  const { content, language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
   
   useEffect(scrollToBottom, [messages, isOpen]);
 
-  // Estilos condicionales
   const bubbleClasses = isComicMode
     ? 'bg-comic-red border-4 border-black text-white shadow-comic'
     : 'bg-dark-blue text-white shadow-xl';
@@ -62,7 +60,7 @@ export default function ChatBot() {
       content: m.text
     }));
     
-    const payload = { message: userMessage, history, language }; // Enviamos el idioma
+    const payload = { message: userMessage, history, language };
 
     try {
       const res = await axios.post('/api/gemini', payload); 
@@ -115,7 +113,7 @@ export default function ChatBot() {
               exit={{ rotate: -90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <MessageSquare size={28} />
+              <Bot size={28} />
             </motion.div>
           )}
         </AnimatePresence>
@@ -139,7 +137,7 @@ export default function ChatBot() {
                   isComicMode ? 'border-4 border-black' : 'border-2 border-white'
                 }`}>
                   <Image 
-                    src="/superhero-icon.png" 
+                    src="/chatbot-ai-icon.png" 
                     alt="David AI" 
                     width={40} 
                     height={40} 
@@ -187,10 +185,10 @@ export default function ChatBot() {
               
               {isLoading && (
                 <div className="flex justify-start">
-                                      <div className={`max-w-[80%] p-3 rounded-lg text-sm ${aiBubbleClasses}`}>
-                      {content.chatbot.typing}
-                    </div>
+                  <div className={`max-w-[80%] p-3 rounded-lg text-sm ${aiBubbleClasses}`}>
+                    {content.chatbot.typing}
                   </div>
+                </div>
               )}
               <div ref={messagesEndRef} />
             </div>
