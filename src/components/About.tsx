@@ -103,17 +103,17 @@ export default function About() {
               </div>
             </div>
 
-            {/* Botones de navegación */}
+            {/* ✅ Botones de navegación - AMBOS FUERA EN DESKTOP, DENTRO EN MOBILE */}
             <button 
               onClick={scrollPrev}
-              className={`absolute top-1/2 left-4 transform -translate-y-1/2 p-2 rounded-full z-10 transition-all ${navButtonClasses}`}
+              className={`absolute top-1/2 left-4 lg:-left-6 transform -translate-y-1/2 p-2 rounded-full z-10 transition-all ${navButtonClasses}`}
               aria-label="Previous"
             >
               <ChevronLeft size={24} />
             </button>
             <button 
               onClick={scrollNext}
-              className={`absolute top-1/2 right-4 transform -translate-y-1/2 p-2 rounded-full z-10 transition-all ${navButtonClasses}`}
+              className={`absolute top-1/2 right-4 lg:-right-6 transform -translate-y-1/2 p-2 rounded-full z-10 transition-all ${navButtonClasses}`}
               aria-label="Next"
             >
               <ChevronRight size={24} />
