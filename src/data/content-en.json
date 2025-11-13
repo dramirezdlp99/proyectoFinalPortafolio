@@ -76,25 +76,74 @@
     "title": "My Projects",
     "items": [
       {
-        "title": "DigiHealth – Clinical Management System",
-        "description": "Complete platform for hospital management, covering everything from biometric patient registration to medical inventory and appointment management. Design focused on professional UI/UX.",
-        "tech": ["React", "Node.js", "MongoDB", "Tailwind CSS", "Figma"],
-        "link": "#",
-        "image": "/project-digihealth.png"
+        "title": "Interactive Multivariable Calculus App",
+        "description": "Console Python app for multivariable calculus: partial derivatives, double integrals, optimization with constraints, and 3D function visualization.",
+        "tech": ["Python", "SymPy", "NumPy", "Matplotlib"],
+        "link": "https://github.com/dramirezdlp99/ProyectoFinalCalculo",
+        "image": "/project-calculo.png"
       },
       {
-        "title": "Interactive Tourism Landing Page",
-        "description": "Responsive and animated landing page design for a travel agency, using fluid animations and modern design. Excellent performance thanks to Next.js.",
+        "title": "PlantSim – Plant Growth Simulator",
+        "description": "Web app simulating plant growth based on environmental variables, using data structures and design patterns. Manages plants' state and tasks in real time.",
+        "tech": ["Angular", "Spring Boot", "Java", "H2 DB", "RxJS"],
+        "link": "https://github.com/Pipemora1324/BigProyect",
+        "image": "/project-plantsim.png"
+      },
+      {
+        "title": "DR Music 🎶",
+        "description": "Web music manager and MP3 player. Upload, play, organize, and delete tracks using doubly linked lists with Flask as backend.",
+        "tech": ["Flask", "Python", "HTML", "CSS"],
+        "link": "https://dr-music.vercel.app/",
+        "image": "/project-drmusic.png"
+      },
+      {
+        "title": "Spider-Man SmartWatch – Doubly Circular Lists",
+        "description": "Animated analog watch in Python using doubly circular lists, Spider-Man skins, and structural data logic. Educational data structures project.",
+        "tech": ["Python", "Tkinter", "Pillow"],
+        "link": "https://github.com/dramirezdlp99/EstructuraDatos",
+        "image": "/project-spiderman.png"
+      },
+      {
+        "title": "Marvel Superheroes Upgrade System (Decorator Pattern)",
+        "description": "Angular interactive app using the Decorator pattern to dynamically add upgrades to Marvel superheroes. Change abilities, looks, and play with audio/visual effects.",
+        "tech": ["Angular", "TypeScript", "SCSS", "HTML5"],
+        "link": "https://mejoras-superheroes-marvel.vercel.app/",
+        "image": "/project-decorator.png"
+      },
+      {
+        "title": "Personal Portfolio",
+        "description": "My professional website with all my experience, projects, and skills. Dark mode, custom animation, and social integration.",
         "tech": ["Next.js", "Tailwind CSS", "Framer Motion"],
-        "link": "#",
-        "image": "/project-turismo.png"
+        "link": "https://david-ramirez-portafolio.vercel.app/",
+        "image": "/project-portfolio.png"
       },
       {
-        "title": "3D Shooter - Unity Game",
-        "description": "Development of a 3D First-Person Shooter (FPS) video game prototype. Application of game logic, physics, and advanced scripting.",
-        "tech": ["Unity", "C#", "Blender"],
-        "link": "#",
-        "image": "/project-shooter.png"
+        "title": "Card Maps – UI + Dark/Light Mode",
+        "description": "Card component UI with interactive map and dark/light toggle. Focused on design usability with Next.js and Leaflet.",
+        "tech": ["Next.js", "Tailwind CSS", "Leaflet"],
+        "link": "https://proyecto-maps.vercel.app/",
+        "image": "/project-cardmaps.png"
+      },
+      {
+        "title": "Example Portfolio (Language Switcher)",
+        "description": "Mini demo portfolio with instant Spanish/English switch and responsive modern UI.",
+        "tech": ["Next.js", "Tailwind CSS"],
+        "link": "https://example-portfolio-quince-octubre.vercel.app/es",
+        "image": "/project-portfolio2.png"
+      },
+      {
+        "title": "Netflix UI Clone - Responsive Design",
+        "description": "Netflix UI visual clone with responsive design. Modern layout and flex practice, no functional JS.",
+        "tech": ["Next.js", "Tailwind CSS"],
+        "link": "https://responsive-design-ejercicio.vercel.app/",
+        "image": "/project-netflixclone.png"
+      },
+      {
+        "title": "Institutional Space Reservation System",
+        "description": "Django web app for classroom/lab reservation: roles, report dashboard, PDF/Excel exports, and interactive calendar.",
+        "tech": ["Django", "Python", "PostgreSQL", "Bootstrap 5"],
+        "link": "https://sistema-reservas-django.onrender.com/",
+        "image": "/project-reservas.png"
       }
     ],
     "cta": "View Project"
