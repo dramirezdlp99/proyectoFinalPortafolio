@@ -1,7 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from 'next/server';
 
-// Inicializa el cliente de Gemini
 const apiKey = process.env.GEMINI_API_KEY;
 
 if (!apiKey) {
@@ -12,7 +11,6 @@ const genAI = new GoogleGenerativeAI(apiKey || '');
 
 export async function POST(req: Request) {
   try {
-    // Validar API Key
     if (!apiKey) {
       console.error('API Key missing');
       return NextResponse.json({ 
@@ -28,15 +26,11 @@ export async function POST(req: Request) {
 
     console.log('Processing message:', message.substring(0, 50));
 
-    // El historial debe mapearse al formato Content para Gemini
     const mappedHistory = (history || []).map((msg: { role: string, content: string }) => ({
       role: msg.role === 'user' ? 'user' : 'model',
       parts: [{ text: msg.content }]
     }));
 
-    // ============================================
-    // SISTEMA DE PROMPT COMPLETO EN ESPAÑOL
-    // ============================================
     const systemInstructionES = `
 Eres David AI, un asistente de IA incorporado en el portafolio de David Ramírez de la Parra, un desarrollador web y futuro ingeniero de software. 
 Tu tono es entusiasta, profesional, y ocasionalmente puedes usar frases de cómic o superhéroe como "¡KA-POW!" o "¡Genial!", pero mantente centrado en el currículum. 
@@ -137,9 +131,6 @@ Su portafolio está diseñado con un **"Comic Mode"** alternativo que le da un t
 - Usa emojis ocasionalmente para ser más cercano.
 `;
 
-    // ============================================
-    // SISTEMA DE PROMPT COMPLETO EN INGLÉS
-    // ============================================
     const systemInstructionEN = `
 You are David AI, an AI assistant embedded in David Ramírez de la Parra's portfolio, a web developer and future software engineer.
 Your tone is enthusiastic, professional, and you can occasionally use comic or superhero phrases like "KA-POW!" or "Awesome!", but stay focused on the resume.
@@ -243,14 +234,12 @@ His portfolio is designed with an alternative **"Comic Mode"** that gives the de
     const systemInstruction = language === 'en' ? systemInstructionEN : systemInstructionES;
 
     console.log('Getting model...');
-    // Obtén el modelo
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-1.5-flash",
+      model: "gemini-1.5-flash-latest",
       systemInstruction: systemInstruction
     });
 
     console.log('Starting chat...');
-    // Inicia el chat con el historial
     const chat = model.startChat({
       history: mappedHistory,
       generationConfig: {
@@ -260,7 +249,6 @@ His portfolio is designed with an alternative **"Comic Mode"** that gives the de
     });
 
     console.log('Sending message...');
-    // Envía el mensaje
     const result = await chat.sendMessage(message);
     
     console.log('Getting response...');
