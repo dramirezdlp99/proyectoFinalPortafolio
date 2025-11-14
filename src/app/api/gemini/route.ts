@@ -2,18 +2,34 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from 'next/server';
 
 // Inicializa el cliente de Gemini
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+const apiKey = process.env.GEMINI_API_KEY;
+
+if (!apiKey) {
+  console.error('GEMINI_API_KEY is not set in environment variables');
+}
+
+const genAI = new GoogleGenerativeAI(apiKey || '');
 
 export async function POST(req: Request) {
   try {
+    // Validar API Key
+    if (!apiKey) {
+      console.error('API Key missing');
+      return NextResponse.json({ 
+        error: "API Key not configured" 
+      }, { status: 500 });
+    }
+
     const { message, history, language } = await req.json();
 
     if (!message) {
       return NextResponse.json({ error: "Missing message parameter" }, { status: 400 });
     }
 
+    console.log('Processing message:', message.substring(0, 50));
+
     // El historial debe mapearse al formato Content para Gemini
-    const mappedHistory = history.map((msg: { role: string, content: string }) => ({
+    const mappedHistory = (history || []).map((msg: { role: string, content: string }) => ({
       role: msg.role === 'user' ? 'user' : 'model',
       parts: [{ text: msg.content }]
     }));
@@ -226,29 +242,47 @@ His portfolio is designed with an alternative **"Comic Mode"** that gives the de
 
     const systemInstruction = language === 'en' ? systemInstructionEN : systemInstructionES;
 
+    console.log('Getting model...');
     // Obtén el modelo
     const model = genAI.getGenerativeModel({ 
       model: "gemini-1.5-flash",
       systemInstruction: systemInstruction
     });
 
+    console.log('Starting chat...');
     // Inicia el chat con el historial
     const chat = model.startChat({
       history: mappedHistory,
+      generationConfig: {
+        maxOutputTokens: 500,
+        temperature: 0.7,
+      },
     });
 
+    console.log('Sending message...');
     // Envía el mensaje
     const result = await chat.sendMessage(message);
-    const response = await result.response;
+    
+    console.log('Getting response...');
+    const response = result.response;
     const text = response.text();
+
+    console.log('Response received:', text.substring(0, 50));
 
     return NextResponse.json({ result: text });
 
-  } catch (error) {
-    console.error("Gemini Chat Error:", error);
+  } catch (error: any) {
+    console.error("Gemini Chat Error Details:", {
+      message: error?.message,
+      status: error?.status,
+      name: error?.name,
+      stack: error?.stack
+    });
+    
     return NextResponse.json({ 
       error: "Internal Server Error", 
-      details: error instanceof Error ? error.message : 'Unknown error'
+      details: error?.message || 'Unknown error',
+      type: error?.name || 'UnknownError'
     }, { status: 500 });
   }
 }
