@@ -271,18 +271,15 @@ His portfolio is designed with an alternative **"Comic Mode"** that gives the de
 
     return NextResponse.json({ result: text });
 
-  } catch (error: any) {
+  } catch (error) {
     console.error("Gemini Chat Error Details:", {
-      message: error?.message,
-      status: error?.status,
-      name: error?.name,
-      stack: error?.stack
+      message: error instanceof Error ? error.message : 'Unknown',
+      name: error instanceof Error ? error.name : 'Unknown'
     });
     
     return NextResponse.json({ 
       error: "Internal Server Error", 
-      details: error?.message || 'Unknown error',
-      type: error?.name || 'UnknownError'
+      details: error instanceof Error ? error.message : 'Unknown error'
     }, { status: 500 });
   }
 }
