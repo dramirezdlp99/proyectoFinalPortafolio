@@ -271,3 +271,5 @@ His portfolio is designed with an alternative **"Comic Mode"** that gives the de
     }, { status: 500 });
   }
 }
+
+// Prueba Vercel
