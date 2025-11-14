@@ -235,13 +235,13 @@ His portfolio is designed with an alternative **"Comic Mode"** that gives the de
 
     console.log('Getting model...');
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-pro",
-      systemInstruction: systemInstruction
+      model: "gemini-1.5-flash"
     });
 
     console.log('Starting chat...');
     const chat = model.startChat({
       history: mappedHistory,
+      systemInstruction: systemInstruction,
       generationConfig: {
         maxOutputTokens: 500,
         temperature: 0.7,
