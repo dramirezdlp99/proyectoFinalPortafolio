@@ -1,13 +1,8 @@
-// src/app/api/gemini/route.ts
-
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from 'next/server';
 
 // Inicializa el cliente de Gemini
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
-// El modelo de IA para generar texto
-const model = "gemini-2.0-flash-exp";
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
 export async function POST(req: Request) {
   try {
@@ -231,23 +226,29 @@ His portfolio is designed with an alternative **"Comic Mode"** that gives the de
 
     const systemInstruction = language === 'en' ? systemInstructionEN : systemInstructionES;
 
-    // Crea el chat con las instrucciones
-    const chat = ai.chats.create({
-      model: model,
-      config: {
-        systemInstruction: systemInstruction,
-      },
+    // Obtén el modelo
+    const model = genAI.getGenerativeModel({ 
+      model: "gemini-1.5-flash",
+      systemInstruction: systemInstruction
+    });
+
+    // Inicia el chat con el historial
+    const chat = model.startChat({
       history: mappedHistory,
     });
-    
-    // Envía el mensaje actual
-    const response = await chat.sendMessage({ message: message });
-    
-    // Devuelve el texto generado
-    return NextResponse.json({ result: response.text });
+
+    // Envía el mensaje
+    const result = await chat.sendMessage(message);
+    const response = await result.response;
+    const text = response.text();
+
+    return NextResponse.json({ result: text });
 
   } catch (error) {
     console.error("Gemini Chat Error:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json({ 
+      error: "Internal Server Error", 
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, { status: 500 });
   }
 }
