@@ -235,7 +235,7 @@ His portfolio is designed with an alternative **"Comic Mode"** that gives the de
 
     console.log('Getting model...');
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-1.5-flash-latest",
+      model: "gemini-pro",
       systemInstruction: systemInstruction
     });
 
