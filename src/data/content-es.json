@@ -190,16 +190,34 @@
     "title": "Testimonios",
     "items": [
       {
-        "name": "Jacqueline Wright",
-        "role": "Cliente",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "name": "Daniers Alexander Solarte Limas",
+        "role": "Compañero de Universidad y Colega",
+        "text": "Durante el tiempo que he conocido a David Ramírez, he visto en él a una persona apasionada, dedicada y comprometida con todo lo que hace. Se esfuerza por dar siempre lo mejor, mantiene una actitud abierta al aprendizaje y demuestra gran perseverancia ante los desafíos. Su pasión por todo lo tecnológico y de mente abierta a nuevos retos lo impulsa a mejorar constantemente. Trabajar con él es una experiencia positiva gracias a su responsabilidad, colaboración y deseo de superación, cualidades que inspiran a quienes lo rodean a mejorar y nunca dejar de aprender.",
         "image": "/testimonial-1.jpg"
       },
       {
-        "name": "Carlos Pérez",
-        "role": "Colaborador",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "name": "Magda Patricia de la Parra Galeano",
+        "role": "Exjefa DLPV Construcciones S.A.S.",
+        "text": "David es una excelente persona, tiene muchas cualidades entre las que puedo resaltar su nobleza, su don de gente, su generosidad, pero lo que más se destaca en el es su perseverancia para salir adelante a pesar de las dificultades. Es admirable todo lo que ha logrado con esfuerzo, dedicación y perseverancia. Como trabajador tube la oportunidad de conocer su dedicación, su entusiasmo por aprender y demostrar sus destrezas y conocimeintos, se integra fácilmente a las personas que están a su alrededor ya que fue siempre respetuoso y colaborador con todo el grupo de trabajo, destacándose por su liderazgo y buen trato. Puedo decir que le espera un futuro brillante y lleno de éxitos tanto profesionales como personales, a demostrado que es una persona integra y que en cualquier lugar donde este se desempeñará con gran excelencia, su integridad personal y académica lo destacarán siempre donde vaya.",
         "image": "/testimonial-2.jpg"
+      },
+      {
+        "name": "Andrés Felipe López Páez",
+        "role": "Amigo",
+        "text": "Conozco a David Fernando Ramírez de la Parra, quien siempre ha sido una persona dedicada, diligente, responsable y apasionada con sus proyectos y metas. Siempre analiza su entorno desde distintos puntos de vista en la búsqueda de la mejor opción para lograr sus actividades, aspira a la innovación y el aprendizaje mediante la actualización en los temas que le apasionan, como la tecnología, el diseño, las matemáticas y la programación. David Fernando, es una persona que incita y motiva la eficiencia en sus entornos, su responsabilidad, compromiso y pasión generan un ambiente de superación a su alrededor.",
+        "image": "/testimonial-3.jpg"
+      },
+      {
+        "name": "Marleny del Rosario de la Parra Galeano",
+        "role": "Tía",
+        "text": "David es una persona de grandes valores, se caracteriza por su paciencia, honradez, dispuesto siempre a ayudar a quien lo necesite. En el ámbito académico es dedicado, responsable, con ganas de salir adelante. Le auguro grandes éxitos cuando termine su carrera y la ejerza en cualquier empresa, sé que tiene hambre de progresar y demostrar todos sus conocimientos, la vida le premiera su constancia y perseverancia.",
+        "image": "/testimonial-4.jpg"
+      },
+      {
+        "name": "Sofía Daniela Granja Guerrero",
+        "role": "Pareja y Compañera de Vida",
+        "text": "Durante el tiempo que llevo conociendo a David en diferentes ámbitos de la vida, he destacado siempre sus capacidades intelectuales y sus notables valores. Lo considero una persona con una gran responsabilidad en las tareas que desempeña, honestidad en todas las situaciones y empeño en hacer las cosas con la mayor calidad posible. Es una persona en la que puedo confiar tanto al nivel laboral como personal, es discreto, prudente e inspira confianza. Contar con David en el ámbito laboral fue muy gratificante por la innovación, la creatividad y el entusiasmo que le pone a cada tarea y es algo que se debe destacar y valorar mucho en una persona.",
+        "image": "/testimonial-5.jpg"
       }
     ]
   },

@@ -190,16 +190,34 @@
     "title": "Testimonials",
     "items": [
       {
-        "name": "Jacqueline Wright",
-        "role": "Client",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "name": "Daniers Alexander Solarte Limas",
+        "role": "University Colleague",
+        "text": "During the time I've known David Ramírez, I've seen in him a passionate, dedicated, and committed person in everything he does. He always strives to give his best, remains open to learning, and shows great perseverance in the face of challenges. His passion for all things tech and his open mind to new challenges drive him to constantly improve. Working with him is a positive experience thanks to his responsibility, collaboration, and desire to grow—qualities that inspire those around him to continually learn and improve.",
         "image": "/testimonial-1.jpg"
       },
       {
-        "name": "Carlos Pérez",
-        "role": "Collaborator",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "name": "Magda Patricia de la Parra Galeano",
+        "role": "Former boss, DLPV Construcciones S.A.S.",
+        "text": "David is an excellent person; he has many remarkable qualities—his kindness, his way with people, and his generosity. But what stands out most is his perseverance to move forward despite difficulties. It's admirable how much he's achieved through effort, dedication, and perseverance. As a worker, I witnessed his dedication, his enthusiasm for learning and showing his skills and knowledge. He easily integrates with those around him, always respectful and collaborative. He stands out for his leadership and good treatment. I can say a bright and successful future awaits him, both professionally and personally, as he has proven to be a person of integrity and will excel wherever he goes.",
         "image": "/testimonial-2.jpg"
+      },
+      {
+        "name": "Andrés Felipe López Páez",
+        "role": "Friend",
+        "text": "I've known David Fernando Ramírez de la Parra, and he's always been a dedicated, diligent, responsible, and passionate person with his projects and goals. He analyzes his environment from different perspectives to find the best way to achieve his objectives, aspires to innovation, and stays up-to-date on topics he's passionate about, like technology, design, math, and programming. David inspires and motivates efficiency in his surroundings, and his responsibility, commitment, and passion create a thriving atmosphere.",
+        "image": "/testimonial-3.jpg"
+      },
+      {
+        "name": "Marleny del Rosario de la Parra Galeano",
+        "role": "Aunt",
+        "text": "David is a person of great values; he is patient, honest, and always willing to help anyone in need. Academically, he is dedicated, responsible, and eager to move forward. I wish him great success in his career and in any company he works for, as I know he wants to prove all his knowledge. Life will reward his persistence and perseverance.",
+        "image": "/testimonial-4.jpg"
+      },
+      {
+        "name": "Sofía Daniela Granja Guerrero",
+        "role": "Partner & Life Companion",
+        "text": "During the time I've known David in different aspects of life, I've always noted his intellectual abilities and strong values. I consider him responsible, honest in all situations, and committed to doing things with the highest quality possible. He's someone I can trust both professionally and personally. He's discreet, prudent, and inspires confidence. Having David as a colleague was gratifying because of the innovation, creativity, and enthusiasm he brings to each task—qualities that are truly valuable in a person.",
+        "image": "/testimonial-5.jpg"
       }
     ]
   },
