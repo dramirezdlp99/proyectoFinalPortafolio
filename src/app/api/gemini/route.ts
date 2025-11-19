@@ -4,6 +4,22 @@ import { NextResponse } from 'next/server';
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 const model = "gemini-2.5-flash";
 
+// Función helper para reintentar
+async function retryWithBackoff(fn: () => Promise<any>, maxRetries = 3, delay = 1000) {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      return await fn();
+    } catch (error: any) {
+      if (error.status === 503 && i < maxRetries - 1) {
+        console.log(`Retry attempt ${i + 1}/${maxRetries}...`);
+        await new Promise(resolve => setTimeout(resolve, delay * (i + 1)));
+        continue;
+      }
+      throw error;
+    }
+  }
+}
+
 export async function POST(req: Request) {
   try {
     const { message, history, language } = await req.json();
@@ -247,20 +263,31 @@ BEHAVIOR INSTRUCTIONS:
 
     const systemInstruction = language === 'en' ? systemInstructionEN : systemInstructionES;
 
-    const chat = ai.chats.create({
-      model: model,
-      config: {
-        systemInstruction: systemInstruction,
-      },
-      history: mappedHistory,
-    });
+    // Usar retry logic aquí
+    const response = await retryWithBackoff(async () => {
+      const chat = ai.chats.create({
+        model: model,
+        config: {
+          systemInstruction: systemInstruction,
+        },
+        history: mappedHistory,
+      });
 
-    const response = await chat.sendMessage({ message: message });
+      return await chat.sendMessage({ message: message });
+    });
 
     return NextResponse.json({ result: response.text });
 
-  } catch (error) {
+  } catch (error: any) {
     console.error("Gemini Chat Error:", error);
+    
+    // Mensaje amigable si sigue fallando
+    if (error.status === 503) {
+      return NextResponse.json({ 
+        error: "El servicio está temporalmente ocupado. Por favor intenta nuevamente en unos segundos." 
+      }, { status: 503 });
+    }
+    
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
