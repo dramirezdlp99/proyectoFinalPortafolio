@@ -264,5 +264,3 @@ BEHAVIOR INSTRUCTIONS:
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
-
-// Prueba ChatBot
