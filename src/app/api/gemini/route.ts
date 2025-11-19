@@ -291,3 +291,5 @@ BEHAVIOR INSTRUCTIONS:
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
+
+// Prueba Vercel solución de error
