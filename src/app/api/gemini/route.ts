@@ -4,13 +4,14 @@ import { NextResponse } from 'next/server';
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 const model = "gemini-2.5-flash";
 
-// Función helper para reintentar
-async function retryWithBackoff(fn: () => Promise<any>, maxRetries = 3, delay = 1000) {
+// Función helper para reintentar (SIN any)
+async function retryWithBackoff<T>(fn: () => Promise<T>, maxRetries = 3, delay = 1000): Promise<T> {
   for (let i = 0; i < maxRetries; i++) {
     try {
       return await fn();
-    } catch (error: any) {
-      if (error.status === 503 && i < maxRetries - 1) {
+    } catch (error: unknown) {
+      const err = error as { status?: number };
+      if (err.status === 503 && i < maxRetries - 1) {
         console.log(`Retry attempt ${i + 1}/${maxRetries}...`);
         await new Promise(resolve => setTimeout(resolve, delay * (i + 1)));
         continue;
@@ -18,6 +19,7 @@ async function retryWithBackoff(fn: () => Promise<any>, maxRetries = 3, delay = 
       throw error;
     }
   }
+  throw new Error('Max retries reached');
 }
 
 export async function POST(req: Request) {
@@ -263,7 +265,6 @@ BEHAVIOR INSTRUCTIONS:
 
     const systemInstruction = language === 'en' ? systemInstructionEN : systemInstructionES;
 
-    // Usar retry logic aquí
     const response = await retryWithBackoff(async () => {
       const chat = ai.chats.create({
         model: model,
@@ -278,11 +279,11 @@ BEHAVIOR INSTRUCTIONS:
 
     return NextResponse.json({ result: response.text });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const err = error as { status?: number };
     console.error("Gemini Chat Error:", error);
     
-    // Mensaje amigable si sigue fallando
-    if (error.status === 503) {
+    if (err.status === 503) {
       return NextResponse.json({ 
         error: "El servicio está temporalmente ocupado. Por favor intenta nuevamente en unos segundos." 
       }, { status: 503 });
@@ -291,5 +292,3 @@ BEHAVIOR INSTRUCTIONS:
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
-
-// Prueba Vercel solución de error, prueba 2
